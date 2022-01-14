@@ -11,7 +11,7 @@ ms.locfileid: "132625796"
 ---
 # <a name="detect-objects-in-images-with-custom-vision"></a>Erkennen von Objekten in Bildern mit Custom Vision
 
-In dieser Übung verwenden Sie den Custom Vision-Dienst, um ein *Objekterkennungs* modell zu trainieren, das drei Klassen von Obst in einem Bild erkennen und auffinden kann (Apfel, Banane und Orange).
+In dieser Übung trainieren Sie mit dem Custom Vision-Dienst ein *Objekterkennungsmodell*, das drei Obstklassen (Apfel, Banane und Orange) in einem Bild erkennen und lokalisieren kann.
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
