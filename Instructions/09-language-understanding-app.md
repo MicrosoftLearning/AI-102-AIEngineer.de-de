@@ -36,8 +36,8 @@ Wenn Sie das Coderepository **AI-102-AIEngineer** noch nicht in die Umgebung gek
 
 Um den Dienst „Language Understanding“ verwenden zu können, benötigen Sie zwei Arten von Ressourcen:
 
-- Eine *Erstellungs* ressource, mit der Sie die Language Understanding-App definieren, trainieren und testen. Diese Ressource muss als **Language Understanding – Erstellung**-Ressource in Ihrem Azure-Abonnement erstellt werden.
-- Eine *Vorhersage* ressource, mit der Sie Ihre Language Understanding-App veröffentlichen und Anforderungen von Clientanwendungen verarbeiten, die diese verwenden. Diese Ressource muss entweder als **Language Understanding**- oder als **Cognitive Services**-Ressource in Ihrem Azure-Abonnement erstellt werden.
+- Eine *Erstellungsressource*, mit der Sie die Language Understanding-App definieren, trainieren und testen. Diese Ressource muss als **Language Understanding – Erstellung**-Ressource in Ihrem Azure-Abonnement erstellt werden.
+- Eine *Vorhersageressource* ressource, mit der Sie Ihre Language Understanding-App veröffentlichen und Anforderungen von Clientanwendungen verarbeiten, die diese verwenden. Diese Ressource muss entweder als **Language Understanding**- oder als **Cognitive Services**-Ressource in Ihrem Azure-Abonnement erstellt werden.
 
      > **Wichtig**: Erstellungsressourcen müssen in einer von drei *Regionen* erstellt werden (Europa, Australien oder USA). Language Understanding-Apps, die in europäischen oder australischen Erstellungsressourcen erstellt wurden, können nur in Vorhersageressourcen in Europa bzw. in Australien bereitgestellt werden. Modelle, die in US-Erstellungsressourcen erstellt wurden, können in Vorhersageressourcen in beliebigen Azure-Standorten bereitgestellt werden, mit Ausnahme von Europa und Australien. Weitere Details zu kompatiblen Erstellungs- und Veröffentlichungsstandorten finden Sie in der [Dokumentation zu Erstellungs- und Veröffentlichungsregionen](https://docs.microsoft.com/azure/cognitive-services/luis/luis-reference-regions).
 

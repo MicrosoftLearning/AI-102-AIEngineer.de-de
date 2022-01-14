@@ -467,7 +467,7 @@ else:
 
     *Welches Datum ist am Sonntag?*
 
-> **Hinweis**: Die Logik in der Anwendung ist absichtlich einfach und weist eine Reihe von Einschränkungen auf, sollte jedoch den Zweck erfüllen, die Fähigkeit des Language Understanding-Modells zum Vorhersagen von Absichten aus gesprochenen Eingaben mit dem Speech SDK zu testen. Möglicherweise haben Sie Probleme beim Erkennen der **GetDay**-Absicht mit einer bestimmten Datumsentität, da es schwierig ist, ein Datum im *MM/TT/YYYY*-Format zu verbalisieren.
+> **Hinweis**: Die Logik in der Anwendung ist absichtlich einfach und weist eine Reihe von Einschränkungen auf, sollte jedoch den Zweck erfüllen, die Fähigkeit des Language Understanding-Modells zum Vorhersagen von Absichten aus gesprochenen Eingaben mit dem Speech SDK zu testen. Möglicherweise haben Sie Probleme beim Erkennen der **GetDay**-Absicht mit einer bestimmten Datumsentität, da es schwierig ist, ein Datum im *MM/TT/JJJJ*-Format zu verbalisieren.
 
 ## <a name="more-information"></a>Weitere Informationen
 
