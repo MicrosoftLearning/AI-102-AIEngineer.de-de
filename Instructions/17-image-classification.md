@@ -11,7 +11,7 @@ ms.locfileid: "132625862"
 ---
 # <a name="classify-images-with-custom-vision"></a>Klassifizieren von Bildern mit Custom Vision
 
-Mit dem **Custom Vision**-Dienst können Sie Modelle für maschinelles Sehen erstellen, die mit Ihren eigenen Bildern trainiert werden. Sie können ihn verwenden, um *Bildklassifizierungs*- und *Objekterkennungs* modelle zu trainieren, die Sie dann veröffentlichen und aus Anwendungen nutzen können.
+Mit dem **Custom Vision**-Dienst können Sie Modelle für maschinelles Sehen erstellen, die mit Ihren eigenen Bildern trainiert werden. Sie können damit, um *Bildklassifizierungs*- und *Objekterkennungsmodelle* trainieren, die Sie dann in Anwendungen veröffentlichen und nutzen können.
 
 In dieser Übung verwenden Sie den Custom Vision-Dienst, um ein Bildklassifizierungsmodell zu trainieren, das drei Klassen von Obst identifizieren kann (Apfel, Banane und Orange).
 
