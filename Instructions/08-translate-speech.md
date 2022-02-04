@@ -2,12 +2,12 @@
 lab:
   title: Übersetzen von gesprochener Sprache
   module: Module 4 - Building Speech-Enabled Applications
-ms.openlocfilehash: 54bc0d9f942455e981437ecf5fe4a9de828c1cfb
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 45c8d0d31bee5901247b22917d8dbad8c587a0bd
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625811"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801352"
 ---
 # <a name="translate-speech"></a>Übersetzen von gesprochener Sprache
 
@@ -53,13 +53,13 @@ In dieser Übung schließen Sie eine teilweise implementierte Clientanwendung ab
     **C#**
 
     ```
-    dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
+    dotnet add package Microsoft.CognitiveServices.Speech --version 1.19.0
     ```
     
     **Python**
     
     ```
-    pip install azure-cognitiveservices-speech==1.14.0
+    pip install azure-cognitiveservices-speech==1.19.0
     ```
 
 3. Zeigen Sie den Inhalt des Ordners **translator** an, und beachten Sie, dass er eine Datei für Konfigurationseinstellungen enthält:

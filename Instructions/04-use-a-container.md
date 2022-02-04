@@ -2,12 +2,12 @@
 lab:
   title: Verwenden eines Cognitive Services-Containers
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 5113ae946307ded7d4bb0674ef25da8687ab6890
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: c222f5526a09ee1ae2aad3732fe2e29eb14c12ef
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625766"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801340"
 ---
 # <a name="use-a-cognitive-services-container"></a>Verwenden eines Cognitive Services-Containers
 
@@ -17,7 +17,7 @@ Viele der Cognitive Services-APIs können in einen *Container* gepackt und darin
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
-Wenn Sie das Coderepository **AI-102-AIEngineer** bereits in die Umgebung geklont haben, in der Sie an diesem Lab arbeiten werden, öffnen Sie es in Visual Studio Code. Führen Sie andernfalls die folgenden Schritte aus, um es jetzt zu klonen.
+Wenn Sie das Coderepository **AI-102-AIEngineer** bereits in die Umgebung geklont haben, in der Sie an dieser Übung arbeiten, öffnen Sie es in Visual Studio Code. Führen Sie andernfalls die folgenden Schritte aus, um es jetzt zu klonen.
 
 1. Starten Sie Visual Studio Code.
 2. Öffnen Sie die Palette (UMSCHALT+STRG+P), und führen Sie einen **Git: Clone**-Befehl aus, um das Repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in einen lokalen Ordner zu klonen (der Ordner ist beliebig).
@@ -54,7 +54,7 @@ Viele häufig verwendete Cognitive Services-APIs sind in Containerimages verfüg
         - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
         - **Imagequelle**: Docker Hub oder andere Registrierung
         - **Imagetyp**: Öffentlich
-        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.012840001-amd64`
+        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **Betriebssystemtyp**: Linux
         - **Größe**: 1 virtuelle CPU, 4 GB Arbeitsspeicher
     - **Netzwerk**:
