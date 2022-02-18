@@ -2,12 +2,12 @@
 lab:
   title: Verwalten der Sicherheit von Cognitive Services
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: b4606ae6dd11a94505b828f4454786f66fd0ad16
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: dcab47cf20f54d6bcbed9a3e40081b703fc2d5ba
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625875"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801334"
 ---
 # <a name="manage-cognitive-services-security"></a>Verwalten der Sicherheit von Cognitive Services
 
@@ -33,10 +33,10 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Tarif**: Standard S0.
+    - **Tarif**: Standard S0
 3. Aktivieren Sie die erforderlichen Kontrollkästchen, und erstellen Sie die Ressource.
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 
@@ -131,7 +131,7 @@ Zunächst müssen Sie einen Schlüsseltresor erstellen und ein *Geheimnis* für 
 
 ### <a name="create-a-service-principal"></a>Erstellen eines Dienstprinzipals
 
-Für den Zugriff auf das Geheimnis im Schlüsseltresor muss Ihre Anwendung einen Dienstprinzipal verwenden, der Zugriff auf das Geheimnis hat. Sie verwenden die Azure-Befehlszeilenschnittstelle (CLI), um den Dienstprinzipal zu erstellen und den Zugriff auf das Geheimnis in Azure Key Vault zu gewähren.
+Für den Zugriff auf das Geheimnis im Schlüsseltresor muss Ihre Anwendung einen Dienstprinzipal verwenden, der Zugriff auf das Geheimnis hat. Sie verwenden die Azure-Befehlszeilenschnittstelle (CLI), um den Dienstprinzipal zu erstellen, die entsprechende Objekt-ID zu ermitteln und den Zugriff auf das Geheimnis in Azure Key Vault zu gewähren.
 
 1. Kehren Sie zu Visual Studio Code zurück, und führen Sie im integrierten Terminal für den Ordner **02-cognitive-security** den folgenden Azure CLI-Befehl aus, wobei Sie *&lt;spName&gt;* durch einen geeigneten Namen für eine Anwendungsidentität ersetzen (z. B. *ai-app*). Ersetzen Sie auch *&lt;subscriptionId&gt;* und *&lt;resourceGroup&gt;* durch die richtigen Werten für Ihre Abonnement-ID und die Ressourcengruppe, die Ihre Cognitive Services- und Key Vault-Ressourcen enthält:
 
@@ -155,10 +155,16 @@ Die Ausgabe dieses Befehls enthält Informationen über Ihren neuen Dienstprinzi
 
 Notieren Sie sich die Werte für **appId**, **password** und **tenant** – Sie werden sie später benötigen (wenn Sie dieses Terminal schließen, können Sie das Kennwort nicht mehr abrufen. Daher ist es wichtig, die Werte jetzt zu notieren. Sie können die Ausgabe in eine neue Textdatei in Visual Studio Code einfügen, um sicherzustellen, dass Sie die benötigten Werte später wiederfinden).
 
-2. Um Ihrem neuen Dienstprinzipal die Berechtigung für den Zugriff auf Geheimnisse in Ihrem Key Vault zu erteilen, führen Sie den folgenden Azure CLI-Befehl aus. Ersetzen Sie *&lt;keyVaultName&gt;* durch den Namen Ihrer Azure Key Vault-Ressource und *&lt;spName&gt;* durch denselben Wert, den Sie bei der Erstellung des Dienstprinzipals angegeben haben.
+2. Führen Sie zum Abrufen der **Objekt-ID** Ihres Dienstprinzipals den folgenden Azure CLI-Befehl aus, um *&lt;appId&gt;* durch den Wert der App-ID Ihres Dienstprinzipals zu ersetzen.
 
     ```
-    az keyvault set-policy -n <keyVaultName> --spn "api://<spName>" --secret-permissions get list
+    az ad sp show --id <appId> --query objectId --out tsv
+    ```
+
+3. Um Ihrem neuen Dienstprinzipal die Berechtigung für den Zugriff auf Geheimnisse in Ihrer Key Vault-Instanz zu erteilen, führen Sie den folgenden Azure CLI-Befehl aus. Ersetzen Sie *&lt;keyVaultName&gt;* durch den Namen Ihrer Azure Key Vault-Ressource und *&lt;objectId&gt;* durch den Wert der Objekt-ID Ihres Dienstprinzipals.
+
+    ```
+    az keyvault set-policy -n <keyVaultName> --object-id <objectId> --secret-permissions get list
     ```
 
 ### <a name="use-the-service-principal-in-an-application"></a>Verwenden des Dienstprinzipals in einer Anwendung
@@ -173,15 +179,15 @@ Jetzt können Sie die Identität des Dienstprinzipals in einer Anwendung verwend
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-    dotnet add package Azure.Identity --version 1.3.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
+    dotnet add package Azure.Identity --version 1.5.0
     dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     pip install azure-identity==1.5.0
     pip install azure-keyvault-secrets==4.2.0
     ```

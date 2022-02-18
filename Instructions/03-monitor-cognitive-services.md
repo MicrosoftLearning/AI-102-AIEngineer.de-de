@@ -2,12 +2,12 @@
 lab:
   title: Überwachen von Cognitive Services
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: caf885516acab74cff46d3a4f807ee98aed446a3
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e0e0042421a4f7150fc3b95cef80887c81a78f3a
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625759"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801337"
 ---
 # <a name="monitor-cognitive-services"></a>Überwachen von Cognitive Services
 
@@ -31,7 +31,7 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: Standard S0.
@@ -46,12 +46,14 @@ Beginnen wir mit der Überwachung, indem wir eine Warnungsregel definieren, dami
 1. Wechseln Sie im Azure-Portal zu Ihrer Cognitive Services-Ressource, und zeigen Sie die Seite **Warnungen** an (im Abschnitt **Überwachung**).
 2. Wählen Sie **+ Neue Warnungsregel** aus.
 3. Vergewissern Sie sich auf der Seite **Warnungsregel erstellen** unter **Bereich**, dass Ihre Cognitive Services-Ressource aufgeführt ist.
-4. Klicken Sie unter **Bedingung** auf **Bedingung hinzufügen**, und sehen Sie sich den rechts angezeigten Bereich **Signallogik konfigurieren** an, in dem Sie einen Signaltyp zur Überwachung auswählen können.
+4. Klicken Sie unter **Bedingung** auf **Bedingung hinzufügen**, und sehen Sie sich den rechts angezeigten Bereich **Signal auswählen** an, in dem Sie einen Signaltyp zur Überwachung auswählen können.
 5. Wählen Sie in der Liste **Signaltyp** die Option **Aktivitätsprotokoll** und dann in der gefilterten Liste die Option **Schlüssel auflisten** aus.
-6. Überprüfen Sie die Aktivitäten der letzten sechs Stunden, und wählen Sie dann **Fertig** aus.
-7. Beachten Sie, dass Sie auf der Seite **Warnungsregel erstellen** unter **Aktionen** eine *Aktionsgruppe* angeben können. Damit können Sie automatische Aktionen konfigurieren, wenn eine Warnung ausgelöst wird – z. B. das Senden einer E-Mail-Benachrichtigung. In dieser Übung werden wir das nicht vornehmen, aber es kann nützlich sein, dies in einer Produktionsumgebung durchzuführen.
-8. Legen Sie im Abschnitt **Details der Warnungsregeln** den **Namen der Warnungsregel** auf **Schlüssellistenwarnung** fest, und klicken Sie auf **Warnungsregel erstellen**. Warten Sie, bis die Warnungsregel erstellt wurde.
-9. Klicken Sie in Visual Studio Code mit der rechten Maustaste auf den Ordner **03-monitor**, und öffnen Sie ein integriertes Terminal. Geben Sie dann den folgenden Befehl ein, um sich über die Azure CLI bei Ihrem Azure-Abonnement anzumelden.
+6. Überprüfen Sie die Aktivität der letzten sechs Stunden.
+7. Navigieren Sie zur Registerkarte **Aktionen**. Beachten Sie, dass Sie eine *Aktionsgruppe* angeben können. Damit können Sie automatische Aktionen konfigurieren, wenn eine Warnung ausgelöst wird – z. B. das Senden einer E-Mail-Benachrichtigung. In dieser Übung werden wir das nicht vornehmen, aber es kann nützlich sein, dies in einer Produktionsumgebung durchzuführen.
+8. Legen Sie auf der Registerkarte **Details** die Option **Name der Warnungsregel** auf **Key List Alert** (Schlüssellistenwarnung) fest.
+9. Klicken Sie auf **Überprüfen + erstellen**. 
+10. Überprüfen Sie die Konfiguration für die Warnung. Klicken Sie auf **Erstellen**, und warten Sie, bis die Warnungsregel erstellt wurde.
+11. Klicken Sie in Visual Studio Code mit der rechten Maustaste auf den Ordner **03-monitor**, und öffnen Sie ein integriertes Terminal. Geben Sie dann den folgenden Befehl ein, um sich über die Azure CLI bei Ihrem Azure-Abonnement anzumelden.
 
     ```
     az login
@@ -79,7 +81,7 @@ Beginnen wir mit der Überwachung, indem wir eine Warnungsregel definieren, dami
 
 Der Befehl gibt eine Liste der Schlüssel für Ihre Cognitive Services-Ressource zurück.
 
-11. Wechseln Sie zurück zu dem Browser, der das Azure-Portal enthält, und aktualisieren Sie Ihre **Warnungsseite**. In der Tabelle sollte die Warnung **Sev 4** aufgeführt sein (andernfalls warten Sie bis zu fünf Minuten und aktualisieren Sie sie erneut).
+11. Wechseln Sie zurück zu dem Browser, in dem das Azure-Portal geöffnet ist, und aktualisieren Sie die **Warnungsseite**. In der Tabelle sollte die Warnung **Sev 4** aufgeführt sein (andernfalls warten Sie bis zu fünf Minuten und aktualisieren Sie sie erneut).
 12. Wählen Sie die Warnung aus, um ihre Details anzuzeigen.
 
 ## <a name="visualize-a-metric"></a>Visualisieren einer Metrik
@@ -92,7 +94,7 @@ Sie können nicht nur Warnungen definieren, sondern auch Metriken für Ihre Cogn
 4. Um einige Anforderungen an Ihren kognitiven Dienst zu generieren, werden Sie **curl** verwenden – ein Befehlszeilentool für HTTP-Anforderungen. Öffnen Sie in Visual Studio Code im Ordner **03-monitor** die Datei **rest-test.cmd**, und bearbeiten Sie den darin enthaltenen Befehl **curl** (siehe unten). Ersetzen Sie *&lt;yourEndpoint&gt;* und *&lt;yourKey&gt;* durch Ihren Endpunkt-URI und den Schlüssel **Key1**, um die Textanalyse-API in Ihrer Cognitive Services-Ressource zu verwenden.
 
     ```
-    curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
+    curl -X POST "<yourEndpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
     ```
 
 5. Speichern Sie Ihre Änderungen, und führen Sie dann im integrierten Terminal für den Ordner **03-monitor** den folgenden Befehl aus:

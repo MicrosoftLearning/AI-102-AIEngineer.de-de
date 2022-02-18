@@ -2,12 +2,12 @@
 lab:
   title: Erstellen einer Azure Cognitive Search-Lösung
   module: Module 12 - Creating a Knowledge Mining Solution
-ms.openlocfilehash: 38d5d50ba7e906ee0842a076ec08ad1e92d10293
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: bba5786ed34cbbe806c74e2b2eec6286cb92554b
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625788"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801376"
 ---
 # <a name="create-an-azure-cognitive-search-solution"></a>Erstellen einer Azure Cognitive Search-Lösung
 
@@ -26,7 +26,7 @@ Wenn Sie das Coderepository **AI-102-AIEngineer** noch nicht in die Umgebung gek
 3. Nachdem das Repository geklont wurde, öffnen Sie den Ordner in Visual Studio Code.
 4. Warten Sie, während zusätzliche Dateien zur Unterstützung der C#-Codeprojekte im Repository installiert werden.
 
-    > **Hinweis**: Wenn Sie aufgefordert werden, erforderliche Ressourcen zum Erstellen und Debuggen hinzuzufügen, wählen Sie **Jetzt nicht** aus.
+    > **Hinweis**: Wenn Sie aufgefordert werden, erforderliche Ressourcen zum Erstellen und Debuggen hinzuzufügen, wählen Sie **Not now** (Jetzt nicht) aus.
 
 ## <a name="create-azure-resources"></a>Erstellen von Azure-Ressourcen
 
@@ -111,7 +111,7 @@ Nachdem sich die Dokumente jetzt an der sichtigen Stelle befinden, können Sie e
     - **Zu extrahierende Daten**: Inhalt und Metadaten
     - **Analysemodus**: Standard
     - **Verbindungszeichenfolge:** *Wählen Sie **Vorhandene Verbindung auswählen** aus. Wählen Sie dann Ihr Speicherkonto und schließlich den **margies**-Container aus, der vom Skript „UploadDocs.cmd“ erstellt wurde.*
-    - **Mit verwalteter Identität authentifizieren**: Deaktiviert
+    - **Authentifizierung mithilfe verwalteter Identitäten**: Keine
     - **Containername**: margies
     - **Blobordner:** *Lassen Sie dieses Feld leer.*
     - **Beschreibung**: Brochures and reviews in Margie's Travel web site.
@@ -134,7 +134,7 @@ Nachdem sich die Dokumente jetzt an der sichtigen Stelle befinden, können Sie e
 
 6. Überprüfen Sie Ihre Auswahl genau (es kann schwierig sein, sie später zu ändern). Wechseln Sie dann zum nächsten Schritt (*Zielindex anpassen*).
 7. Ändern Sie den **Indexnamen** in **margies-index**.
-8. Vergewissern Sie sich, dass der **Schlüssel** auf **metadata_storage_path** festgelegt ist, und lassen Sie **Name des Vorschlagsmoduls** und **Suchmodus** leer.
+8. Stellen Sie sicher, dass der **Schlüssel** auf **metadata_storage_path** festgelegt ist, lassen Sie **Name der Vorschlagsfunktion** leer, und übernehmen Sie die Standardeinstellung für den **Suchmodus**.
 9. Nehmen Sie die folgenden Änderungen an den Indexfeldern vor, und übernehmen Sie für alle anderen Felder deren Standardeinstellungen (**WICHTIG**: Sie müssen möglicherweise nach rechts scrollen, um die ganze Tabelle anzuzeigen.):
 
     | Feldname | Abrufbar | Filterbar | Sortierbar | In Facets einteilbar | Suchbar |
@@ -219,7 +219,7 @@ Obwohl Sie das Portal zum Erstellen und Ändern von Suchlösungen verwenden kön
 
     ```
     {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "defaultLanguageCode": "en",
         "name": "get-sentiment",
         "description": "New skill to evaluate sentiment",
@@ -236,14 +236,14 @@ Obwohl Sie das Portal zum Erstellen und Ändern von Suchlösungen verwenden kön
         ],
         "outputs": [
             {
-                "name": "score",
-                "targetName": "sentimentScore"
+                "name": "sentiment",
+                "targetName": "sentimentLabel"
             }
         ]
     }
     ```
 
-Der neue Skill heißt **get-sentiment** und wertet für jede **document**-Ebene in einem Dokument den Text aus, der im Feld **merged_content** des indizierten Dokuments gefunden wurde. (Dieses Feld enthält den Inhalt der Quelle sowie alle Texte, die aus Bildern im Inhalt extrahiert wurden.) Dabei wird die extrahierte **Sprache** des Dokuments verwendet (standardmäßig Englisch) und eine Bewertung für die Stimmung des Inhalts ermittelt. Diese Bewertung wird dann in einem neuen Feld namens **sentimentScore** ausgegeben.
+Der neue Skill heißt **get-sentiment** und wertet für jede **document**-Ebene in einem Dokument den Text aus, der im Feld **merged_content** des indizierten Dokuments gefunden wurde. (Dieses Feld enthält den Inhalt der Quelle sowie alle Texte, die aus Bildern im Inhalt extrahiert wurden.) Dabei wird die extrahierte **Sprache** des Dokuments verwendet (standardmäßig Englisch) und eine Bezeichnung für die Stimmung des Inhalts ausgewertet. Die Werte für die Stimmungsbezeichnung können „positive“, „negative“, „neutral“ oder „mixed“ sein. Diese Bezeichnung wird dann in einem neuen Feld namens **sentimentLabel** ausgegeben.
 
 6. Speichern Sie die Änderungen, die Sie an **skillset.json** vorgenommen haben.
 
@@ -256,7 +256,7 @@ Der neue Skill heißt **get-sentiment** und wertet für jede **document**-Ebene 
     ```
     {
         "name": "sentiment",
-        "type": "Edm.Double",
+        "type": "Edm.String",
         "facetable": false,
         "filterable": true,
         "retrievable": true,
@@ -290,11 +290,11 @@ Der neue Skill heißt **get-sentiment** und wertet für jede **document**-Ebene 
 
 Alle anderen Metadaten- und Inhaltsfelder im Quelldokument werden implizit gleichnamigen Feldern im Index zugeordnet.
 
-4. Überprüfen Sie den Abschnitt **ouputFieldMappings**, in dem die Ausgaben der Skills im Skillset Indexfeldern zugeordnet werden. Die meisten Zuordnungen entsprechen den Auswahlen, die Sie in der Benutzeroberfläche vorgenommen haben. Die folgende Zuordnung wurde jedoch hinzugefügt, um den **sentimentScore**-Wert, der aus dem „get-sentiment“-Skill extrahiert wurde, dem **sentiment**-Feld zuzuordnen, das zum Index hinzugefügt wurde:
+4. Überprüfen Sie den Abschnitt **ouputFieldMappings**, in dem die Ausgaben der Skills im Skillset Indexfeldern zugeordnet werden. Die meisten Zuordnungen entsprechen den Auswahlen, die Sie auf der Benutzeroberfläche vorgenommen haben. Die folgende Zuordnung wurde jedoch hinzugefügt, um den aus dem „sentiment“-Skill extrahierten **sentimentLabel**-Wert dem **sentiment**-Feld zuzuordnen, das zum Index hinzugefügt wurde:
 
     ```
     {
-        "sourceFieldName": "/document/sentimentScore",
+        "sourceFieldName": "/document/sentimentLabel",
         "targetFieldName": "sentiment"
     }
     ```
@@ -318,10 +318,10 @@ Alle anderen Metadaten- und Inhaltsfelder im Quelldokument werden implizit gleic
 2. Geben Sie im Suchexplorer im Feld **Abfragezeichenfolge** die folgende Zeichenfolge ein, und wählen Sie dann **Suchen** aus.
 
     ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
+    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
     ```
 
-    Diese Abfrage ruft die Elemente **url**, **sentiment** und **keyphrases** für alle Dokumente ab, in denen *London* erwähnt wird, die von *Reviewer* erstellt wurden und deren **sentiment**-Bewertung größer als *0,5* ist (d. h. positive Rezensionen, die London erwähnen).
+    Diese Abfrage ruft die Elemente **url**, **sentiment** und **keyphrases** für alle Dokumente ab, in denen *London* erwähnt wird, die von *Reviewer* erstellt wurden und deren **sentiment**-Bezeichnung positiv ist (also positive Rezensionen, die London erwähnen).
 
 3. Schließen Sie die **Suchexplorer**-Seite, um zur Seite **Übersicht** zurückzukehren.
 
@@ -396,7 +396,7 @@ Die Web-App enthält bereits Code zum Verarbeiten und Rendern der Suchergebnisse
         - Anzeigen des Felds **metadata_storage_name** (Dateiname) als Link zur Adresse im **url**-Feld.
         - Anzeigen einer *Hervorhebung* für Suchbegriffe, die in den Feldern **merged_content** und **imageCaption** gefunden wurden, um die Suchbegriffe im jeweiligen Kontext besser sichtbar zu machen.
         - Anzeigen der Felder **metadata_author**, **metadata_storage_size**, **metadata_storage_last_modified** und **language**.
-        - Anzeigen der **Stimmung** mithilfe eines Emoticons (&#128578; für Bewertungen von 0,5 oder höher und &#128577; für Bewertungen kleiner als 0,5).
+        - Anzeigen der **sentiment**-Bezeichnung für das Dokument. Diese kann positiv, negativ, neutral oder gemischt sein.
         - Anzeigen der ersten fünf **keyphrases** (sofern vorhanden).
         - Anzeigen der ersten fünf **locations** (sofern vorhanden).
         - Anzeigen der ersten fünf **imageTags** (sofern vorhanden) an.
@@ -424,7 +424,7 @@ Die Web-App enthält bereits Code zum Verarbeiten und Rendern der Suchergebnisse
     - Ein *Filter* basierend auf einem Facettenwert für das **metadata_author**-Feld. Dies veranschaulicht, wie Sie *in Facets einteilbar* Felder verwenden können, um eine *Facet*-Liste zurückzugeben. Dabei handelt es sich um Felder mit einer kleinen Menge diskreter Werte, die als mögliche Filterwerte auf der Benutzeroberfläche angezeigt werden können.
     - Die Möglichkeit, die Ergebnisse basierend auf einem angegebenen Feld und der Sortierrichtung (aufsteigend oder absteigend) zu *anzuordnen*. Die Standardreihenfolge basiert auf der *Relevanz*, die als **search.score()** -Wert basierend auf einem *Bewertungsprofil* berechnet wird, das die Häufigkeit und Wichtigkeit von Suchbegriffen in den Indexfeldern auswertet.
 6. Wählen Sie den Filter **Reviewer**, die Sortieroption **Positive to negative** und dann **Refine Results** aus.
-7. Beachten Sie, dass die gefilterten Ergebnisse nur Bewertungen enthalten und in absteigender Reihenfolge Stimmung sortiert werden.
+7. Beachten Sie, dass die gefilterten Ergebnisse nur Bewertungen enthalten und basierend auf der sentiment-Bezeichnung sortiert werden.
 8. Geben Sie im **Search**-Feld für eine neue Suche **quiet hotel in New York** ein, und überprüfen Sie die Ergebnisse.
 9. Probieren Sie die folgenden Suchbegriffe aus:
     - **Tower of London** (Beachten Sie, dass dieser Begriff in einigen Dokumenten als *Schlüsselbegriff* angegeben wird.)

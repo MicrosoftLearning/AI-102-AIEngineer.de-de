@@ -2,12 +2,12 @@
 lab:
   title: Erste Schritte mit Cognitive Services
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 184092faafa5e4a138bd9d9cc07f253110f7d8c3
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 4baba38b03c6d7bb5fe04fa5e73bb606e970550b
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625767"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801355"
 ---
 # <a name="get-started-with-cognitive-services"></a>Erste Schritte mit Cognitive Services
 
@@ -26,15 +26,15 @@ Wenn Sie das Coderepository **AI-102-AIEngineer** noch nicht in die Umgebung gek
 
 ## <a name="provision-a-cognitive-services-resource"></a>Bereitstellen einer Cognitive Services-Ressource
 
-Azure Cognitive Services sind cloudbasierte Dienste, die KI-Funktionen kapseln, die Sie in Ihre Anwendungen integrieren können. Sie können einzelne Cognitive Services-Ressourcen für bestimmte APIs bereitstellen (z. B. **Textanalyse** oder **maschinelles Sehen**). Sie können auch eine allgemeine **Cognitive Services**-Ressource bereitstellen, die über einen einzelnen Endpunkt und Schlüssel Zugriff auf mehrere Cognitive Services-APIs bietet. In diesem Fall verwenden Sie eine einzelne **Cognitive Services**-Ressource.
+Azure Cognitive Services sind cloudbasierte Dienste, die KI-Funktionen kapseln, die Sie in Ihre Anwendungen integrieren können. Sie können einzelne Cognitive Services-Ressourcen für bestimmte APIs bereitstellen (z. B. **Language** oder **maschinelles Sehen**). Sie können auch eine allgemeine **Cognitive Services**-Ressource bereitstellen, die über einen einzelnen Endpunkt und Schlüssel Zugriff auf mehrere Cognitive Services-APIs bietet. In diesem Fall verwenden Sie eine einzelne **Cognitive Services**-Ressource.
 
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Tarif**: Standard S0.
+    - **Tarif**: Standard S0
 3. Aktivieren Sie die erforderlichen Kontrollkästchen, und erstellen Sie die Ressource.
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 5. Wechseln Sie zur Ressource, und zeigen Sie die Seite **Schlüssel und Endpunkt** an. Diese Seite enthält die Informationen, die Sie benötigen, um eine Verbindung zu Ihrer Ressource herzustellen und sie aus den von Ihnen entwickelten Anwendungen zu nutzen. Dies betrifft insbesondere:
@@ -44,7 +44,7 @@ Azure Cognitive Services sind cloudbasierte Dienste, die KI-Funktionen kapseln, 
 
 ## <a name="use-a-rest-interface"></a>Verwenden einer REST-Schnittstelle
 
-Die Cognitive Services-APIs sind REST-basiert, d. h. Sie können sie nutzen, indem Sie JSON-Anforderungen über HTTP übermitteln. In diesem Beispiel erkunden Sie eine Konsolenanwendung, die die **Textanalyse**-REST-API zur Spracherkennung verwendet. Das Grundprinzip ist jedoch für alle von der Cognitive Services-Ressource unterstützten APIs gleich.
+Die Cognitive Services-APIs sind REST-basiert, d. h. Sie können sie nutzen, indem Sie JSON-Anforderungen über HTTP übermitteln. In diesem Beispiel erkunden Sie eine Konsolenanwendung, die die **Language**-REST-API zur Spracherkennung verwendet. Das Grundprinzip ist jedoch für alle von der Cognitive Services-Ressource unterstützten APIs gleich.
 
 > **Hinweis**: In dieser Übung können Sie wahlweise die REST-API von **C#** oder **Python** verwenden. Führen Sie in den folgenden Schritten die entsprechenden Aktionen für Ihre bevorzugte Sprache aus.
 
@@ -93,13 +93,13 @@ Sie können Code schreiben, der die Cognitive Services-REST-APIs direkt nutzt, a
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     ```
 
 3. Zeigen Sie den Inhalt des Ordners **sdk-client** an, und beachten Sie, dass er eine Datei für Konfigurationseinstellungen enthält:

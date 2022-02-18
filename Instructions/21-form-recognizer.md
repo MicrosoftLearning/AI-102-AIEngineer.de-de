@@ -2,12 +2,12 @@
 lab:
   title: Extrahieren von Daten aus Formularen
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 6d2d43675faaa37f2123ff64ab7e8856007fe314
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e2181d06b7dbf14bb5ea2a850eeb39d80a575f61
+ms.sourcegitcommit: 254d3fe43a77d925ba3bfb81daae737ec8203bfa
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625755"
+ms.lasthandoff: 12/07/2021
+ms.locfileid: "133893547"
 ---
 # <a name="extract-data-from-forms"></a>Extrahieren von Daten aus Formularen 
 
@@ -21,7 +21,7 @@ Wenn Sie das noch nicht erledigt haben, müssen Sie das Coderepository für dies
 
 1. Starten Sie Visual Studio Code.
 2. Öffnen Sie die Palette (UMSCHALT+STRG+P), und führen Sie einen **Git: Clone**-Befehl aus, um das Repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` in einen lokalen Ordner zu klonen (der Ordner ist beliebig).
-3. Wenn das Repository geklont wurde, öffnen Sie den Ordner in Visual Studio Code.
+3. Nachdem das Repository geklont wurde, öffnen Sie den Ordner in Visual Studio Code.
 4. Warten Sie, während zusätzliche Dateien zur Unterstützung der C#-Codeprojekte im Repository installiert werden.
 
     > **Hinweis:** Wenn Sie aufgefordert werden, erforderliche Objekte hinzuzufügen, die erstellt und debuggt werden sollen, wählen Sie **Nicht jetzt** aus.
@@ -34,7 +34,7 @@ Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Ab
 
 2. Wählen Sie die Schaltfläche **&#65291; Ressource erstellen** aus, suchen Sie nach *Formularerkennung*, und erstellen Sie eine **Formularerkennungsressource** mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: F0
@@ -104,7 +104,7 @@ setup
 
 > **Wichtig**: Fügen Sie vor Fortsetzung des Vorgangs den SAS-URI an einer Stelle ein, an der Sie ihn später erneut abrufen können (z. B. in einer neuen Textdatei in Visual Studio Code).
 
-15. Aktualisieren Sie im Azure-Portal die Ressourcengruppe, und vergewissern Sie sich, dass sie das soeben erstellte Azure Storage-Konto enthält. Öffnen Sie das Speicherkonto, und wählen Sie im Bereich auf der linken Seite **Storage-Explorer** aus. Erweitern Sie dann in Storage-Explorer **BLOBCONTAINER**, und wählen Sie den Container **sampleforms** aus, um zu überprüfen, ob die Dateien aus Ihrem lokalen Ordner **21-custom-form/sample-forms** hochgeladen wurden.
+15. Aktualisieren Sie im Azure-Portal die Ressourcengruppe, und vergewissern Sie sich, dass sie das soeben erstellte Azure Storage-Konto enthält. Öffnen Sie das Speicherkonto, und klicken Sie im Bereich auf der linken Seite auf den **Speicherbrowser (Vorschau)** . Erweitern Sie dann im Speicherbrowser **BLOBCONTAINER**, und wählen Sie den Container **sampleforms** aus, um zu überprüfen, ob die Dateien aus Ihrem lokalen Ordner **21-custom-form/sample-forms** hochgeladen wurden.
 
 ## <a name="train-a-model-without-labels"></a>Trainieren eines Modells *ohne* Bezeichnungen
 

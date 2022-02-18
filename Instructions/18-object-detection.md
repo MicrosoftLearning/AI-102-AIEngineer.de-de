@@ -2,16 +2,16 @@
 lab:
   title: Erkennen von Objekten in Bildern mit Custom Vision
   module: Module 9 - Developing Custom Vision Solutions
-ms.openlocfilehash: a45f5d06f7abace5ad4472c93dc9de360ca2718a
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: a4b3111b90476ebb752734f46d112c374f2019cf
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625796"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801373"
 ---
 # <a name="detect-objects-in-images-with-custom-vision"></a>Erkennen von Objekten in Bildern mit Custom Vision
 
-In dieser Übung trainieren Sie mit dem Custom Vision-Dienst ein *Objekterkennungsmodell*, das drei Obstklassen (Apfel, Banane und Orange) in einem Bild erkennen und lokalisieren kann.
+In dieser Übung verwenden Sie den Custom Vision-Dienst, um ein *Objekterkennungs* modell zu trainieren, das drei Klassen von Obst in einem Bild erkennen und auffinden kann (Apfel, Banane und Orange).
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
@@ -33,17 +33,16 @@ Wenn Sie in Ihrem Azure-Abonnement bereits über **Custom Vision**-Ressourcen f�
     - **Erstellungsoptionen**: Beide
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
     - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Trainingsstandort**: *Wählen Sie einen beliebigen verfügbaren Standort aus.*
     - **Tarif für Training**: F0
-    - **Vorhersagestandort**: *Dieselbe Region wie die Trainingsressource*
     - **Tarif für Vorhersage**: F0
 
     > **Hinweis**: Falls Ihr Abonnement bereits einen Custom Vision-Dienst im Tarif F0 enthält, wählen Sie für diesen **S0** aus.
 
-3. Warten Sie, bis die Ressourcen erstellt wurden, zeigen Sie dann die Bereitstellung an, und beachten Sie, dass zwei Custom Vision-Ressourcen bereitgestellt wurden, eine für das Training und eine für die Vorhersage. Sie können diese Ressourcen anzeigen, indem Sie zur Ressourcengruppe navigieren, in der Sie sie erstellt haben.
+3. Warten Sie, bis die Ressourcen erstellt wurden, zeigen Sie dann die Bereitstellung an, und beachten Sie, dass zwei Custom Vision-Ressourcen bereitgestellt wurden, eine für das Training und eine für die Vorhersage (erkennbar am Suffix **-Prediction**). Sie können diese Ressourcen anzeigen, indem Sie zur Ressourcengruppe navigieren, in der Sie sie erstellt haben.
 
-> **Wichtig**: Jede Ressource hat ihren eigenen *Endpunkt* und *Schlüssel*, die verwendet werden, um den Zugriff aus Ihrem Code zu verwalten. Um ein Bildklassifizierungsmodell zu trainieren, muss Ihr Code die *Trainingsressource*  (mit ihrem Endpunkt und Schlüssel) verwenden, und um das trainierte Modell zum Vorhersagen von Bildklassen zu verwenden, muss Ihr Code die *Vorhersageressource* (mit ihrem Endpunkt und Schlüssel) verwenden.
+> **Wichtig**: Jede Ressource hat ihren eigenen *Endpunkt* und *Schlüssel*, die verwendet werden, um den Zugriff aus Ihrem Code zu verwalten. Um ein Bildklassifizierungsmodell zu trainieren, muss Ihr Code die *Trainings* ressource (mit ihrem Endpunkt und Schlüssel) verwenden, und um das trainierte Modell zum Vorhersagen von Bildklassen zu verwenden, muss Ihr Code die *Vorhersage* ressource (mit ihrem Endpunkt und Schlüssel) verwenden.
 
 ## <a name="create-a-custom-vision-project"></a>Erstellen eines Custom Vision-Projekts
 
@@ -93,7 +92,7 @@ Sie können das grafische Tool im Custom Vision-Portal verwenden, um Ihre Bilder
 
 1. Klicken Sie auf das Symbol *Einstellungen* (&#9881;) oben rechts auf der Seite **Trainingsbilder** im Custom Vision-Portal, um die Projekteinstellungen anzuzeigen.
 2. Notieren Sie unter **Allgemein** (auf der linken Seite) die **Projekt-ID**, die dieses Projekt eindeutig identifiziert.
-3. Beachten Sie auf der rechten Seite unter **Ressourcen**, dass die Details für die *Trainings* ressource, einschließlich ihres Schlüssels und Endpunkts, angezeigt werden (Sie können diese Informationen auch abrufen, indem Sie die Ressource im Azure-Portal anzeigen).
+3. Beachten Sie, dass auf der rechten Seite unter **Ressourcen** der Schlüssel und der Endpunkt angezeigt werden. Dies sind die Details für die *Trainingsressource*. (Sie können diese Informationen auch abrufen, indem Sie die Ressource im Azure-Portal anzeigen.)
 4. Erweitern Sie in Visual Studio Code im Ordner **18-object-detection** je nach Ihrer bevorzugten Sprache den Ordner **C-Sharp** oder **Python**.
 5. Klicken Sie mit der rechten Maustaste auf den Ordner **train-detector**, und öffnen Sie ein integriertes Terminal. Installieren Sie dann das Custom Vision-Trainingspaket, indem Sie den entsprechenden Befehl für Ihre bevorzugte Sprache ausführen:
 
@@ -113,7 +112,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
     - **C#** : appsettings.json
     - **Python**: .env
 
-    Öffnen Sie die Konfigurationsdatei, und aktualisieren Sie die darin enthaltenen Konfigurationswerte so, dass der Endpunkt und Schlüssel für Ihre Custom Vision-*Trainings* ressource und die Projekt-ID für das zuvor erstellte Klassifizierungsprojekt verwendet werden. Speichern Sie die Änderungen.
+    Öffnen Sie die Konfigurationsdatei, und aktualisieren Sie die darin enthaltenen Konfigurationswerte so, dass der Endpunkt und Schlüssel für Ihre Custom Vision-*Trainingsressource* und die Projekt-ID für das zuvor erstellte Objekterkennungsprojekt verwendet werden. Speichern Sie die Änderungen.
 
 7. Öffnen Sie im Ordner **train-detector** die Datei **tagged-images.json**, und untersuchen Sie den darin enthaltenen JSON-Code. Der JSON-Code definiert eine Liste von Bildern, die jeweils einen oder mehrere markierte Bereiche enthalten. Jeder markierte Bereich enthält einen Tagnamen sowie die oberen und linken Koordinaten und die Breite und Höhe des Begrenzungsfelds, das das markierte Objekt enthält.
 
@@ -145,7 +144,7 @@ dotnet run
 python train-detector.py
 ```
     
-11. Warten Sie, bis das Programm beendet ist. Kehren Sie dann zu Ihrem Browser zurück, und zeigen Sie die Seite **Trainingsbilder** für Ihr Projekt im Custom Vision-Portal an (aktualisieren Sie ggf. den Browser).
+11. Warten Sie, bis das Programm beendet wird. Kehren Sie dann zu Ihrem Browser zurück, und zeigen Sie die Seite **Trainingsbilder** für Ihr Projekt im Custom Vision-Portal an (aktualisieren Sie ggf. den Browser).
 12. Vergewissern Sie sich, dass dem Projekt einige neue markierte Bilder hinzugefügt wurden.
 
 ## <a name="train-and-test-a-model"></a>Trainieren und Testen eines Modells
@@ -162,9 +161,9 @@ Jetzt können Sie Ihr trainiertes Modell veröffentlichen, damit es in einer Cli
 
 1. Klicken Sie im Custom Vision-Portal auf der Seite **Leistung** auf **&#128504; Veröffentlichen**, um das trainierte Modell mit den folgenden Einstellungen zu veröffentlichen:
     - **Modellname**: fruit-detector
-    - **Vorhersageressource**: *Die **Vorhersage** ressource, die Sie zuvor erstellt haben (<u>nicht</u> die Trainingsressource)* .
+    - **Vorhersageressource:** *Dies ist die zuvor erstellte **Vorhersageressource**, die mit „-Prediction“ endet (<u>nicht</u> die Trainingsressource).*
 2. Klicken Sie links oben auf der Seite **Projekteinstellungen** auf das Symbol für den *Projektkatalog* (&#128065;), um zur Startseite des Custom Vision-Portals zu gelangen, auf der Ihr Projekt jetzt aufgelistet wird.
-3. Klicken Sie auf der Startseite des Custom Vision-Portals oben rechts auf das Symbol *Einstellungen* (&#9881;), um die Einstellungen für Ihren Custom Vision-Dienst anzuzeigen. Suchen Sie dann unter **Ressourcen** Ihre *Vorhersage* ressource (<u>nicht</u> die Trainingsressource), um ihre Werte für **Schlüssel** und **Endpunkt** zu ermitteln (Sie können diese Informationen auch abrufen, indem Sie die Ressource im Azure-Portal anzeigen).
+3. Klicken Sie auf der Startseite des Custom Vision-Portals oben rechts auf das Symbol *Einstellungen* (&#9881;), um die Einstellungen für Ihren Custom Vision-Dienst anzuzeigen. Suchen Sie dann unter **Ressourcen** Ihre auf „-Prediction“ endende *Vorhersageressource* (<u>nicht</u> die Trainingsressource), um ihre Werte für **Schlüssel** und **Endpunkt** zu ermitteln. (Sie können diese Informationen auch abrufen, indem Sie die Ressource im Azure-Portal anzeigen.)
 
 ## <a name="use-the-image-classifier-from-a-client-application"></a>Verwenden der Bildklassifizierung aus einer Clientanwendung
 

@@ -2,18 +2,18 @@
 lab:
   title: Analysieren von Text
   module: Module 3 - Getting Started with Natural Language Processing
-ms.openlocfilehash: eb4e413e64c322f182cd5eadaff56bb880636e2f
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 27cd22e81d4fe8fda27e6fc960d3b3aeb8debded
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625874"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801328"
 ---
 # <a name="analyze-text"></a>Analysieren von Text
 
-Die **Textanalyse-API** ist ein Cognitive Service, der die Analyse von Text unterstützt, einschließlich Sprachenerkennung, Standpunktanalyse, Schlüsselbegriffserkennung und Entitätserkennung.
+Der **Language**-Dienst ist ein Cognitive Service, der die Analyse von Text unterstützt, einschließlich Sprachenerkennung, Standpunktanalyse, Schlüsselbegriffserkennung und Entitätserkennung.
 
-Angenommen, ein Reiseunternehmen möchte Hotelbewertungen verarbeiten, die auf der Website des Unternehmens abgegeben wurden. Mithilfe der Textanalyse-API können sie die Sprache bestimmen, in der jede der Bewertungen geschrieben wurde, den Standpunkt (positiv, neutral oder negativ) der Bewertungen, Schlüsselbegriffe, die auf die in der Bewertung behandelten Hauptthemen hinweisen können, sowie benannte Entitäten wie Orte, Sehenswürdigkeiten oder Personen, die in den Bewertungen erwähnt werden.
+Angenommen, ein Reiseunternehmen möchte Hotelbewertungen verarbeiten, die auf der Website des Unternehmens abgegeben wurden. Mithilfe des Language-Diensts können sie die Sprache bestimmen, in der jede der Bewertungen geschrieben wurde, den Standpunkt (positiv, neutral oder negativ) der Bewertungen, Schlüsselbegriffe, die auf die in der Bewertung behandelten Hauptthemen hinweisen können, sowie benannte Entitäten wie Orte, Sehenswürdigkeiten oder Personen, die in den Bewertungen erwähnt werden.
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
@@ -41,11 +41,11 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 5. Wenn die Ressource bereitgestellt wurde, wechseln Sie zu ihr, und zeigen Sie ihre Seite **Schlüssel und Endpunkt** an. Sie benötigen den Endpunkt und einen der Schlüssel von dieser Seite im nächsten Verfahren.
 
-## <a name="prepare-to-use-the-text-analytics-sdk"></a>Vorbereiten der Verwendung des Textanalyse-SDK
+## <a name="prepare-to-use-the-language-sdk-for-text-analytics"></a>Vorbereiten der Verwendung des Language-SDK für die Textanalyse
 
-In dieser Übung schließen Sie eine teilweise implementierte Clientanwendung ab, die das Textanalyse-SDK zum Analysieren von Hotelbewertungen verwendet.
+In dieser Übung schließen Sie eine teilweise implementierte Clientanwendung ab, die das Language-SDK für die Textanalyse zum Analysieren von Hotelbewertungen verwendet.
 
-> **Hinweis**: Sie können auswählen, das SDK für **C#** oder **Python** zu verwenden. Führen Sie in den folgenden Schritten die Aktionen aus, die für Ihre bevorzugte Sprache geeignet sind.
+> **Hinweis**: Sie können auswählen, ob Sie das SDK für **C#** oder **Python** verwenden möchten. Führen Sie in den folgenden Schritten die Aktionen aus, die für Ihre bevorzugte Sprache geeignet sind.
 
 1. Wechseln Sie in Visual Studio Code im **Explorer**-Bereich zum Ordner **05-analyze-text**, und erweitern Sie je nach Ihrer bevorzugten Sprache den Ordner **C-Sharp** oder **Python**.
 2. Klicken Sie mit der rechten Maustaste auf den Ordner **text-analysis**, und öffnen Sie ein integriertes Terminal. Installieren Sie dann das Textanalyse-SDK-Paket, indem Sie den entsprechenden Befehl für Ihre bevorzugte Sprache ausführen:
@@ -53,13 +53,13 @@ In dieser Übung schließen Sie eine teilweise implementierte Clientanwendung ab
     **C#**
     
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
     ```
     
     **Python**
     
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     ```
     
 3. Zeigen Sie den Inhalt des Ordners **text-analysis** an, und beachten Sie, dass er eine Datei für Konfigurationseinstellungen enthält:
@@ -350,4 +350,4 @@ Zusätzlich zu kategorisierten Entitäten kann die Textanalyse-API Entitäten er
 
 ## <a name="more-information"></a>Weitere Informationen
 
-Weitere Informationen zur Verwendung des **Textanalyse**-Diensts finden Sie in der [Dokumentation zur Textanalyse](https://docs.microsoft.com/azure/cognitive-services/text-analytics/).
+Weitere Informationen zur Verwendung des **Language**-Diensts finden Sie in der [Dokumentation zur Textanalyse](https://docs.microsoft.com/azure/cognitive-services/language-service/).

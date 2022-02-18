@@ -2,12 +2,12 @@
 lab:
   title: Erstellen eines benutzerdefinierten Skills für Azure Cognitive Search
   module: Module 12 - Creating a Knowledge Mining Solution
-ms.openlocfilehash: 288b9badac3a3ec4d1461a5da14faa2e52143959
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: e09dbbc4fb72ae51e911f1440fd29d4917e50a6a
+ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625772"
+ms.lasthandoff: 01/12/2022
+ms.locfileid: "135801367"
 ---
 # <a name="create-a-custom-skill-for-azure-cognitive-search"></a>Erstellen eines benutzerdefinierten Skills für Azure Cognitive Search
 
@@ -43,7 +43,7 @@ Wenn Sie das Coderepository **AI-102-AIEngineer** bereits in die Umgebung geklon
     ```
 
 8. Melden Sie sich bei Ihrem Azure-Abonnement an, wenn Sie dazu aufgefordert werden. Kehren Sie dann zu Visual Studio Code zurück, und warten Sie, bis der Anmeldevorgang abgeschlossen ist.
-9. Führen Sie den folgenden Befehl aus, um Azure-Standorte auflisten.
+9. Führen Sie den folgenden Befehl aus, um Azure-Speicherorte auflisten.
 
     ```
     az account list-locations -o table
@@ -103,8 +103,8 @@ In dieser Übung verwenden Sie die REST-Schnittstelle von Azure Cognitive Search
 8. Überprüfen Sie den JSON-Code für den Index, und schließen Sie die Datei, ohne Änderungen vorzunehmen.
 9. Öffnen Sie im Ordner **create-search** die Datei **indexer.json**. Diese Datei enthält eine JSON-Definition für einen Indexer namens **margies-custom-indexer**.
 10. Überprüfen Sie den JSON-Code für den Indexer, und schließen Sie die Datei, ohne Änderungen vorzunehmen.
-11. Öffnen Sie im Ordner **create-search** die Datei **create-search.cmd**. Dieses Batchskript verwendet das Hilfsprogramm cURL, um die JSON-Definitionen an die REST-Schnittstelle für Ihre Azure Cognitive Search Ressource zu übermitteln.
-12. Ersetzen Sie die Platzhalter für die Variablen **YOUR_SEARCH_URL** und **YOUR_ADMIN_KEY** durch die **URL** und einen der **Administratorschlüssel** für Ihre Azure Cognitive Search Ressource.
+11. Öffnen Sie im Ordner **create-search** die Datei **create-search.cmd**. Dieses Batchskript verwendet das Hilfsprogramm cURL, um die JSON-Definitionen an die REST-Schnittstelle für Ihre Azure Cognitive Search-Ressource zu übermitteln.
+12. Ersetzen Sie die Platzhalter für die Variablen **YOUR_SEARCH_URL** und **YOUR_ADMIN_KEY** durch die **URL** und einen der **Administratorschlüssel** für Ihre Azure Cognitive Search-Ressource.
 
     *Sie finden diese Werte auf der Seite mit der **Übersicht** (Overview) und der Seite mit den **Schlüsseln** (Keys) für Ihre Azure Cognitive Search-Ressource im Azure-Portal.*
 
@@ -125,13 +125,13 @@ In dieser Übung verwenden Sie die REST-Schnittstelle von Azure Cognitive Search
 Nachdem Sie nun über einen Index verfügen, können Sie ihn durchsuchen.
 
 1. Wählen Sie oben auf dem Blatt für Ihre Azure Cognitive Search-Ressource die Option **Search explorer** (Suchexplorer) aus.
-2. Geben Sie im Suchexplorer im Feld **Query string** (Abfragezeichenfolge) die folgende Zeichenfolge ein, und wählen Sie dann **Search** (Suchen) aus.
+2. Geben Sie im Suchexplorer im Feld **Abfragezeichenfolge** die folgende Zeichenfolge ein, und wählen Sie dann **Suchen** aus.
 
     ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
+    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
     ```
 
-    Diese Abfrage ruft die Elemente **url**, **sentiment** und **keyphrases** für alle Dokumente ab, in denen *London* erwähnt wird, die von *Reviewer* erstellt wurden und deren **sentiment**-Bewertung größer als *0,5* ist (d. h. positive Rezensionen, die London erwähnen).
+    Diese Abfrage ruft die Elemente **url**, **sentiment** und **keyphrases** für alle Dokumente ab, in denen *London* erwähnt wird, die von *Reviewer* erstellt wurden und deren **sentiment**-Bezeichnung positiv ist (also positive Rezensionen, die London erwähnen).
 
 ## <a name="create-an-azure-function-for-a-custom-skill"></a>Erstellen einer Azure-Funktion für einen benutzerdefinierten Skill
 
