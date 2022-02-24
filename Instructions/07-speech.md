@@ -2,12 +2,12 @@
 lab:
   title: Erkennen und Synthetisieren von Sprache
   module: Module 4 - Building Speech-Enabled Applications
-ms.openlocfilehash: 9867905b0189fa5932dba02cd0815817171e4928
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 4f65f068cab76299f838153d32a2d4e8979a1253
+ms.sourcegitcommit: 3374bf6b03869daf624f3916bc34510fcbe580e0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801358"
+ms.lasthandoff: 02/18/2022
+ms.locfileid: "139088438"
 ---
 # <a name="recognize-and-synthesize-speech"></a>Erkennen und Synthetisieren von Sprache
 
@@ -38,7 +38,7 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: Standard S0
@@ -350,7 +350,7 @@ Ihre Anwendung für die sprechende Uhr verwendet eine Standardstimme, die Sie ä
 
     ```C#
     // Configure speech synthesis
-    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // add this
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // change this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -358,7 +358,7 @@ Ihre Anwendung für die sprechende Uhr verwendet eine Standardstimme, die Sie ä
     
     ```Python
     # Configure speech synthesis
-    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # add this
+    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # change this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
 
