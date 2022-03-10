@@ -2,12 +2,12 @@
 lab:
   title: Extrahieren von Daten aus Formularen
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: e2181d06b7dbf14bb5ea2a850eeb39d80a575f61
-ms.sourcegitcommit: 254d3fe43a77d925ba3bfb81daae737ec8203bfa
+ms.openlocfilehash: 99d450eb777229f573de9a7231c773e3c103efd9
+ms.sourcegitcommit: 1807a2fd95d9818d27b8c34c0ad041d844eea806
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/07/2021
-ms.locfileid: "133893547"
+ms.lasthandoff: 03/08/2022
+ms.locfileid: "139548572"
 ---
 # <a name="extract-data-from-forms"></a>Extrahieren von Daten aus Formularen 
 
@@ -34,7 +34,7 @@ Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Ab
 
 2. Wählen Sie die Schaltfläche **&#65291; Ressource erstellen** aus, suchen Sie nach *Formularerkennung*, und erstellen Sie eine **Formularerkennungsressource** mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: F0
@@ -285,7 +285,7 @@ python test-model.py
     
 3. Zeigen Sie die Ausgabe an, und beobachten Sie, wie die Ausgabe für das Modell, das **mit** Bezeichnungen trainiert wurde, Feldnamen wie „CompanyPhoneNumber“ und „DatedAs“ bereitstellt – im Gegensatz zur Ausgabe aus dem Modell, das **ohne** Bezeichnungen trainiert wurde und die Ausgabe „field-1“, „field-2“ usw. erzeugt hat.  
 
-Während sich der Programmcode zum Trainieren eines Modells _mit_ Bezeichnungen vom Code für das Training _ohne_ Bezeichnungen möglicherweise nicht stark unterscheidet, _ändert_ die Auswahl eines Modells im Vergleich zum anderen die Projektplanungsanforderungen. Zum Trainieren mit Bezeichnungen müssen Sie [die bezeichneten Dateien erstellen](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0). Die Auswahl des Trainingsprozesses kann auch unterschiedliche Modelle erzeugen, die sich wiederum auf Downstreamprozesse auswirken können – je nachdem, welche Felder das Modell zurückgibt und wie Sie den zurückgegebenen Werten vertrauen. 
+Während sich der Programmcode zum Trainieren eines Modells _mit_ Bezeichnungen vom Code für das Training _ohne_ Bezeichnungen möglicherweise nicht stark unterscheidet, _ändert_ die Auswahl eines Modells im Vergleich zum anderen die Projektplanungsanforderungen. Zum Trainieren mit Bezeichnungen müssen Sie [die bezeichneten Dateien erstellen](https://docs.microsoft.com/azure/applied-ai-services/form-recognizer/quickstarts/try-sample-label-tool). Die Auswahl des Trainingsprozesses kann auch unterschiedliche Modelle erzeugen, die sich wiederum auf Downstreamprozesse auswirken können – je nachdem, welche Felder das Modell zurückgibt und wie Sie den zurückgegebenen Werten vertrauen. 
 
 ## <a name="more-information"></a>Weitere Informationen
 
