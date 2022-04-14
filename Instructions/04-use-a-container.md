@@ -2,12 +2,12 @@
 lab:
   title: Verwenden eines Cognitive Services-Containers
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: c222f5526a09ee1ae2aad3732fe2e29eb14c12ef
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 3c9e51562e4fb93809855e3ae8707d6aeaf83c97
+ms.sourcegitcommit: e9fc70625e09e4f4585a08e1668597f5d82616a0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801340"
+ms.lasthandoff: 04/11/2022
+ms.locfileid: "141605463"
 ---
 # <a name="use-a-cognitive-services-container"></a>Verwenden eines Cognitive Services-Containers
 
@@ -33,7 +33,7 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: Standard S0
@@ -53,7 +53,6 @@ Viele häufig verwendete Cognitive Services-APIs sind in Containerimages verfüg
         - **Containername**: *Geben Sie einen eindeutigen Namen ein.*
         - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
         - **Imagequelle**: Docker Hub oder andere Registrierung
-        - **Imagetyp**: Öffentlich
         - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **Betriebssystemtyp**: Linux
         - **Größe**: 1 virtuelle CPU, 4 GB Arbeitsspeicher
