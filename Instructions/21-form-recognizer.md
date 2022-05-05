@@ -2,12 +2,12 @@
 lab:
   title: Extrahieren von Daten aus Formularen
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 99d450eb777229f573de9a7231c773e3c103efd9
-ms.sourcegitcommit: 1807a2fd95d9818d27b8c34c0ad041d844eea806
+ms.openlocfilehash: 45915cfcb832635b668d9b22da931c2b467c7452
+ms.sourcegitcommit: 29a684646784fe4f7370343b6c005728a953770d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/08/2022
-ms.locfileid: "139548572"
+ms.lasthandoff: 05/04/2022
+ms.locfileid: "144557829"
 ---
 # <a name="extract-data-from-forms"></a>Extrahieren von Daten aus Formularen 
 
@@ -45,7 +45,7 @@ Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Ab
 
 ## <a name="gather-documents-for-training"></a>Sammeln von Dokumenten für das Training
 
-![Abbildung einer Rechnung.](../21-custom-form/sample-forms/Form_1.jpg)  
+![Abbildung einer Rechnung.](../21-custom-form/sample-forms/Form_1.png)  
 
 Sie verwenden die Beispielformulare aus dem Ordner **21-custom-form/sample-forms** in diesem Repository, die alle erforderlichen Dateien enthalten, um ein Modell ohne Bezeichnungen und ein anderes Modell mit Bezeichnungen zu trainieren.
 
