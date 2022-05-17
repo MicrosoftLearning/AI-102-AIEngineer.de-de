@@ -2,12 +2,12 @@
 lab:
   title: Erstellen einer „Fragen und Antworten“-Lösung
   module: Module 6 - Building a QnA Solution
-ms.openlocfilehash: 786d4c30b4b4f85b5c85a7a9b8d500a497bb832d
-ms.sourcegitcommit: 6c1ad9a67d6caadcfb7edb4f58e314eab306f720
+ms.openlocfilehash: 3fa849480f4b6f94aea758159de126aeb8bfb513
+ms.sourcegitcommit: 47e8de0c2ea379aac8bec96b7c599ffb74d1eee9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/09/2021
-ms.locfileid: "134463603"
+ms.lasthandoff: 02/22/2022
+ms.locfileid: "139132295"
 ---
 # <a name="create-a-question-answering-solution"></a>Erstellen einer „Fragen und Antworten“-Lösung
 
@@ -95,13 +95,13 @@ Ihre Wissensdatenbank wurde mit Frage-Antwort-Paaren aus den häufig gestellten 
 
 6. Klicken Sie unter der Antwort, die Sie für die Zertifizierungsfrage eingegeben haben, auf **&#65291; Add follow-up prompts** (Folgeäußerungen hinzufügen).
 7. Geben Sie im Dialogfeld **Follow-up Prompt** (Folgeäußerung) die folgenden Einstellungen ein, und klicken Sie dann auf **Add prompt** (Äußerung hinzufügen):
-    - **Text, der Benutzer*innen in der Äußerung angezeigt wird:** „Learn more about certification“ (Weitere Informationen zur Zertifizierung)
+    - **Text, der dem Benutzer in der Eingabeaufforderung angezeigt wird**: `Learn more about certification`.
     - Klicken Sie auf **Create link to new pair** (Link zu neuem Paar erstellen), und geben Sie den folgenden Text ein: `You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **Show in contextual flow only** (Nur im kontextbezogenen Flow anzeigen): Diese Option ist aktiviert. *Mit dieser Option wird sichergestellt, dass die Antwort nur jeweils im Kontext einer Folgefrage aus der ursprünglichen Zertifizierungsfrage zurückgegeben wird.*
 
 ## <a name="train-and-test-the-knowledge-base"></a>Trainieren und Testen der Wissensdatenbank
 
-Nachdem Sie nun über eine Wissensdatenbank verfügen, können Sie sie im QnA Maker-Portal testen.
+Nachdem Sie nun über eine Wissensdatenbank verfügen, können Sie sie in Language Studio testen.
 
 1. Klicken Sie oben rechts auf der Seite auf **Änderungen speichern**.
 2. Klicken Sie nach dem Speichern der Änderungen auf **Testen**, um den Testbereich zu öffnen.
