@@ -2,16 +2,16 @@
 lab:
   title: Extrahieren von Daten aus Formularen
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 45915cfcb832635b668d9b22da931c2b467c7452
-ms.sourcegitcommit: 29a684646784fe4f7370343b6c005728a953770d
+ms.openlocfilehash: 3439c9d2d53fd0461b2fe35b095ea86d5ed3abaa
+ms.sourcegitcommit: da2617566698e889ff53426e6ddb58f42ccf9504
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/04/2022
-ms.locfileid: "144557829"
+ms.lasthandoff: 05/05/2022
+ms.locfileid: "144776169"
 ---
 # <a name="extract-data-from-forms"></a>Extrahieren von Daten aus Formularen 
 
-Angenommen, ein Unternehmen muss einen Dateneingabeprozess automatisieren. Zurzeit kann ein Mitarbeiter eine Bestellung lesen und die Daten manuell in eine Datenbank eingeben. Sie möchten ein Modell erstellen, das maschinelles Lernen verwendet, um das Formular zu lesen und strukturierte Daten zu erzeugen, mit denen eine Datenbank automatisch aktualisiert werden kann.
+Angenommen, in einem Unternehmen müssen Mitarbeiter*innen die Daten von Bestellungen manuell in eine Datenbank eingeben. Das Unternehmen möchte KI-Dienste nutzen, um den Dateneingabeprozess zu verbessern. Sie planen, ein Machine Learning-Modell zu erstellen, das das Formular liest und strukturierte Daten erzeugt, die zum automatischen Aktualisieren einer Datenbank verwendet werden können.
 
 **Formularerkennung** ist ein Cognitive Service, mit dem Benutzer automatisierte Datenverarbeitungssoftware erstellen können. Diese Software kann Text, Schlüssel-Wert-Paare und Tabellen mithilfe der optischen Zeichenerkennung (Optical Character Recognition, OCR) aus Formulardokumenten extrahieren. Formularerkennung enthält vorgefertigte Modelle zum Erkennen von Rechnungen, Belegen und Visitenkarten. Der Dienst bietet auch die Funktionalität zum Trainieren von benutzerdefinierten Modellen. In dieser Übung konzentrieren wir uns auf das Erstellen benutzerdefinierter Modelle.
 
@@ -28,7 +28,7 @@ Wenn Sie das noch nicht erledigt haben, müssen Sie das Coderepository für dies
 
 ## <a name="create-a-form-recognizer-resource"></a>Erstellen einer Formularerkennungsressource
 
-Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Abonnement eine Formularerkennungsressource erstellen. Über das Azure-Portal erstellen Sie eine Ressource.
+Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Abonnement eine Formularerkennungs- oder Cognitive Services-Ressource erstellen. Über das Azure-Portal erstellen Sie eine Ressource.
 
 1.  Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 
@@ -45,15 +45,15 @@ Um den Formularerkennungsdienst nutzen zu können, müssen Sie in Ihrem Azure-Ab
 
 ## <a name="gather-documents-for-training"></a>Sammeln von Dokumenten für das Training
 
-![Abbildung einer Rechnung.](../21-custom-form/sample-forms/Form_1.png)  
+![Abbildung einer Rechnung.](../21-custom-form/sample-forms/Form_1.jpg)  
 
-Sie verwenden die Beispielformulare aus dem Ordner **21-custom-form/sample-forms** in diesem Repository, die alle erforderlichen Dateien enthalten, um ein Modell ohne Bezeichnungen und ein anderes Modell mit Bezeichnungen zu trainieren.
+Sie verwenden die Beispielformulare aus dem Ordner **21-custom-form/sample-forms** in diesem Repository, die alle erforderlichen Dateien für das Trainieren und Testen eines Modells enthalten.
 
 1. Erweitern Sie in Visual Studio Code im Ordner **21-custom-form** den Ordner **sample-forms**. Beachten Sie, dass der Ordner Dateien enthält, deren Namen auf **.json** und **.jpg** enden.
 
-    Sie verwenden die **JPG**-Dateien, um Ihr erstes Modell _ohne_ Bezeichnungen zu trainieren.  
+    Sie verwenden die **JPG**-Dateien, um Ihr Modell zu trainieren.  
 
-    Später verwenden Sie die Dateien, die auf **.json** und **.jpg** enden, um Ihr zweites Modell _mit_ Bezeichnungen zu trainieren. Die **JSON**-Dateien wurden automatisch generiert und enthalten Bezeichnungsinformationen. Zum Training mit Bezeichnungen benötigen Sie zusätzlich zu den Formularen Informationsdateien mit Bezeichnungen in Ihrem Blobspeichercontainer. 
+    Die **JSON**-Dateien wurden automatisch generiert und enthalten Bezeichnungsinformationen. Die Dateien werden zusammen mit den Formularen in Ihren Blob Storage-Container hochgeladen. 
 
 2. Kehren Sie zum Azure-Portal unter [https://portal.azure.com](https://portal.azure.com) zurück.
 
@@ -106,16 +106,20 @@ setup
 
 15. Aktualisieren Sie im Azure-Portal die Ressourcengruppe, und vergewissern Sie sich, dass sie das soeben erstellte Azure Storage-Konto enthält. Öffnen Sie das Speicherkonto, und klicken Sie im Bereich auf der linken Seite auf den **Speicherbrowser (Vorschau)** . Erweitern Sie dann im Speicherbrowser **BLOBCONTAINER**, und wählen Sie den Container **sampleforms** aus, um zu überprüfen, ob die Dateien aus Ihrem lokalen Ordner **21-custom-form/sample-forms** hochgeladen wurden.
 
-## <a name="train-a-model-without-labels"></a>Trainieren eines Modells *ohne* Bezeichnungen
+## <a name="train-a-model-using-the-form-recognizer-sdk"></a>Trainieren eines Modells mithilfe des Formularerkennungs SDK
 
-Sie verwenden das Formularerkennung SDK zum Trainieren und Testen eines benutzerdefinierten Modells.  
+Jetzt trainieren Sie ein Modell mithilfe der **JPG**- und **JSON**-Dateien.
 
-> **Hinweis**: In dieser Übung können Sie wahlweise die API aus dem **C#** oder **Python** SDK verwenden. Führen Sie in den folgenden Schritten die entsprechenden Aktionen für Ihre bevorzugte Sprache aus.
+1. Öffnen Sie in Visual Studio Code im Ordner **21-custom-form/sample-forms** die Datei **fields.json**, und überprüfen Sie das darin enthaltene JSON-Dokument. Diese Datei definiert die Felder, für die Sie ein Modell zum Extrahieren aus den Formularen trainieren.
+2. Öffnen Sie die Datei **Form_1.jpg.labels.json**, und überprüfen Sie den JSON-Code darin. Diese Datei identifiziert den Speicherort und die Werte für benannte Felder im Trainingsdokument **Form_1.jpg**.
+3. Öffnen Sie die Datei **Form_1.jpg.ocr.json**, und überprüfen Sie den JSON-Code darin. Diese Datei enthält eine JSON-Darstellung des Textlayouts von **Form_1.jpg**, einschließlich der Position aller Textbereiche im Formular.
 
-1. Erweitern Sie in Visual Studio Code im Ordner **21-custom-form** (je nach Ihrer Spracheinstellung) den Ordner **C-Sharp** oder **Python**.
-2. Klicken Sie mit der rechten Maustaste auf den Ordner **test-model**, und öffnen Sie ein integriertes Terminal.
+    *Die Dateien mit den Feldinformationen werden Ihnen in dieser Übung zur Verfügung gestellt. Für eigene Projekte können Sie diese Dateien mit [Formularerkennungsstudio](https://formrecognizer.appliedai.azure.com/studio) erstellen. Während Sie das Tool verwenden, werden Ihre Feldinformationsdateien automatisch erstellt und in Ihrem verbundenen Speicherkonto gespeichert.*
 
-3. Installieren Sie das Formularerkennung-Paket, indem Sie den entsprechenden Befehl für Ihre bevorzugte Sprache ausführen:
+4. Erweitern Sie in Visual Studio Code im Ordner **21-custom-form** (je nach Ihrer Spracheinstellung) den Ordner **C-Sharp** oder **Python**.
+5. Klicken Sie mit der rechten Maustaste auf den Ordner **test-model**, und öffnen Sie ein integriertes Terminal.
+
+6. Installieren Sie das Formularerkennung-Paket, indem Sie den entsprechenden Befehl für Ihre bevorzugte Sprache ausführen:
 
 **C#**
 
@@ -129,16 +133,16 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 pip install azure-ai-formrecognizer==3.0.0
 ```
 
-3. Zeigen Sie den Inhalt des Ordners **train-model** an, und beachten Sie, dass er eine Datei für Konfigurationseinstellungen enthält:
+7. Zeigen Sie den Inhalt des Ordners **train-model** an, und beachten Sie, dass er eine Datei für Konfigurationseinstellungen enthält:
     - **C#** : appsettings.json
     - **Python**: .env
 
-4. Bearbeiten Sie die Konfigurationsdatei, und ändern Sie die Einstellungen, damit sie Folgendes wiedergeben:
+8. Bearbeiten Sie die Konfigurationsdatei, und ändern Sie die Einstellungen, damit sie Folgendes wiedergeben:
     - Den **Endpunkt** für Ihre Formularerkennungsressource.
     - Einen **Schlüssel** für Ihre Formularerkennungsressource.
     - Den **SAS-URI** für Ihren Blobcontainer.
 
-5. Beachten Sie, dass der Ordner **train-model** eine Codedatei für die Clientanwendung enthält:
+9. Beachten Sie, dass der Ordner **train-model** eine Codedatei für die Clientanwendung enthält:
 
     - **C#** : Program.cs
     - **Python**: train-model.py
@@ -146,10 +150,14 @@ pip install azure-ai-formrecognizer==3.0.0
     Öffnen Sie die Codedatei, und überprüfen Sie den darin enthaltenen Code, wobei Sie sich die folgenden Details notieren:
     - Namespaces aus dem von Ihnen installierten Paket werden importiert.
     - Die Funktion **Main** ruft die Konfigurationseinstellungen ab und verwendet den Schlüssel und Endpunkt zum Erstellen eines authentifizierten **Clients**.
-    - Der Code verwendet den Trainingsclient, um ein Modell mithilfe der Bilder in Ihrem Blobspeichercontainer zu trainieren, auf den mit dem von Ihnen generierten SAS-URI zugegriffen wird.
-    - Das Training wird mit einem Parameter ausgeführt, um anzugeben, dass <u>keine</u> Trainingsbezeichnungen verwendet werden sollten. Formularerkennung verwendet eine *nicht überwachte* Technik zum Extrahieren der Felder aus den Formularbildern.
+    - Der Code verwendet den Trainingsclient, um ein Modell mithilfe der Bilder in Ihrem Blob Storage-Container zu trainieren, auf den mit dem von Ihnen generierten SAS-URI zugegriffen wird.
 
-6. Geben Sie das integrierte Terminal für den Ordner **train-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
+10. Öffnen Sie im Ordner **train-model** die Codedatei für die Trainingsanwendung:
+
+    - **C#** : Program.cs
+    - **Python**: train-model.py
+
+11. Geben Sie das integrierte Terminal für den Ordner **train-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
 
 **C#**
 
@@ -163,16 +171,15 @@ dotnet run
 python train-model.py
 ```
 
-7. Warten Sie, bis das Programm beendet ist. Überprüfen Sie dann die Modellausgabe, und suchen Sie im Terminal die Modell-ID. Weil Sie diesen Wert im nächsten Verfahren benötigen, schließen Sie das Terminal nicht!
+12. Warten Sie, bis das Programm beendet ist, und überprüfen Sie dann die Modellausgabe.
+13. Notieren Sie sich die Modell-ID in der Terminalausgabe. Sie benötigen sie im nächsten Teil des Labs. 
 
-## <a name="test-the-model-created-without-labels"></a>Testen des ohne Bezeichnungen erstellten Modells
-
-Jetzt können Sie Ihr trainiertes Modell verwenden. Beachten Sie, wie Sie Ihr Modell mithilfe von Dateien aus einem Speichercontainer-URI trainiert haben. Sie hätten das Modell auch mithilfe von lokalen Dateien trainieren können. Auf ähnliche Weise können Sie Ihr Modell mithilfe von Formularen aus einem URI oder aus lokalen Dateien testen. Sie testen das Formularmodell mit einer lokalen Datei.
-
-Nachdem Sie die Modell-ID erhalten haben, können Sie sie aus einer Clientanwendung heraus nutzen. Auch hier können Sie wieder wahlweise **C#** oder **Python** verwenden.
+## <a name="test-your-custom-form-recognizer-model"></a>Testen Ihres benutzerdefinierten Formularerkennungsmodells 
 
 1. Erweitern Sie im Ordner **21-custom-form** im Unterordner für Ihre bevorzugte Sprache (**C-Sharp** oder **Python**) den Ordner **test-model**.
-2. Klicken Sie mit der rechten Maustaste auf den Ordner **test-model**, und öffnen Sie ein integriertes Terminal. Sie haben jetzt (mindestens) zwei **cmd**-Terminals und können dazwischen mithilfe der Dropdownliste im Terminalbereich wechseln.
+
+2. Klicken Sie mit der rechten Maustaste auf den Ordner **test-model**, und wählen Sie die Option zum **Öffnen eines integrierten Terminals** aus.
+
 3. Installieren Sie im Terminal für den Ordner **test-model** das Formularerkennung-Paket, indem Sie den entsprechenden Befehl für Ihre Spracheinstellung ausführen:
 
 **C#**
@@ -192,13 +199,14 @@ pip install azure-ai-formrecognizer==3.0.0
 4. Bearbeiten Sie im Ordner **test-model** die Konfigurationsdatei (**appsettings.json** oder **.env**, je nach Ihrer Spracheinstellung), und aktualisieren Sie sie, um die folgenden Werte hinzuzufügen:
     - Ihren Endpunkt für Formularerkennung.
     - Ihren Schlüssel für Formularerkennung.
-    - Die Modell-ID, die beim Trainieren des Modells generiert wurde (Sie finden die ID, indem Sie im Terminal zurück zur Konsole **cmd** für den Ordner **train-model** wechseln).
+    - Die Modell-ID, die beim Trainieren des Modells generiert wurde (Sie finden die ID, indem Sie im Terminal zurück zur Konsole **cmd** für den Ordner **train-model** wechseln). **Speichern** Sie die Änderungen.
 
 5. Öffnen Sie im Ordner **test-model** die Codedatei für Ihre Clientanwendung (*Program.cs* für C#, *test-model.py* für Python), und überprüfen Sie den darin enthaltenen Code, wobei Sie sich die folgenden Details notieren:
     - Namespaces aus dem von Ihnen installierten Paket werden importiert.
     - Die Funktion **Main** ruft die Konfigurationseinstellungen ab und verwendet den Schlüssel und Endpunkt zum Erstellen eines authentifizierten **Clients**.
     - Anschließend werden mithilfe des Clients Formularfelder und -werte aus dem Bild **test1.jpg** extrahiert.
     
+
 6. Geben Sie das integrierte Terminal für den Ordner **test-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
 
 **C#**
@@ -212,80 +220,8 @@ dotnet run
 ```
 python test-model.py
 ```
-
-7. Zeigen Sie die Ausgabe an, und beachten Sie die Zuverlässigkeitsbewertungen der Vorhersage. Beachten Sie, dass die Ausgabe Feldnamen wie „field-1“, „field-2“ usw. bereitstellt. 
-
-## <a name="train-a-model-with-labels-using-the-client-library"></a>Trainieren eines Modells *mit* Bezeichnungen mithilfe der Clientbibliothek
-
-Angenommen, Sie haben ein Modell mit den Rechnungsformularen trainiert und möchten sehen, wie ein Modell, das mit bezeichneten Daten trainiert wurde, funktioniert. Wenn Sie ein Modell ohne Bezeichnungen trainiert haben, haben Sie nur die **JPG**-Formulare aus Ihrem Azure-Blobcontainer verwendet. Jetzt trainieren Sie ein Modell mithilfe der **JPG**- und **JSON**-Dateien.
-
-1. Öffnen Sie in Visual Studio Code im Ordner **21-custom-form/sample-forms** die Datei **fields.json**, und überprüfen Sie das darin enthaltene JSON-Dokument. Diese Datei definiert die Felder, für die Sie ein Modell zum Extrahieren aus den Formularen trainieren.
-2. Öffnen Sie die Datei **Form_1.jpg.labels.json**, und überprüfen Sie den JSON-Code darin. Diese Datei identifiziert den Speicherort und die Werte für benannte Felder im Trainingsdokument **Form_1.jpg**.
-3. Öffnen Sie die Datei **Form_1.jpg.ocr.json**, und überprüfen Sie den JSON-Code darin. Diese Datei enthält eine JSON-Darstellung des Textlayouts von **Form_1.jpg**, einschließlich der Position aller Textbereiche im Formular.
-
-    *Die Feldinformationsdateien wurden in dieser Übung für Sie bereitgestellt. Für Ihre eigenen Projekte können Sie diese Dateien mit dem [Sample Labeling Tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/label-tool) (Beispielbezeichnungstool) erstellen. Während Sie das Tool verwenden, werden Ihre Feldinformationsdateien automatisch erstellt und in Ihrem verbundenen Speicherkonto gespeichert.*
-
-4. Öffnen Sie im Ordner **train-model** die Codedatei für die Trainingsanwendung:
-
-    - **C#** : Program.cs
-    - **Python**: train-model.py
-
-5. Suchen Sie in der Funktion **Main** den Kommentar **Train model** (Modell trainieren), und ändern Sie ihn wie gezeigt, um den Trainingsprozess so zu ändern, dass Bezeichnungen verwendet werden:
-
-**C#**
-
-```C#
-// Train model 
-CustomFormModel model = await trainingClient
-.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-.WaitForCompletionAsync();
-```
-
-**Python**
-
-```Python
-# Train model 
-poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-model = poller.result()
-```
-
-6. Geben Sie das integrierte Terminal für den Ordner **train-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
-
-10. Warten Sie, bis das Programm beendet ist, und überprüfen Sie dann die Modellausgabe.
-11. Notieren Sie sich die neue Modell-ID in der Terminalausgabe. 
-
-## <a name="test-the-model-created-with-labels"></a>Testen des mit Bezeichnungen erstellten Modells
-
-1. Bearbeiten Sie im Ordner **test-model** die Konfigurationsdatei (**appsettings.json** oder **.env**, je nach Ihrer Spracheinstellung), und aktualisieren Sie sie, damit sie die neue Modell-ID wiedergibt. Speichern Sie die Änderungen.
-2. Geben Sie das integrierte Terminal für den Ordner **test-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
     
-3. Zeigen Sie die Ausgabe an, und beobachten Sie, wie die Ausgabe für das Modell, das **mit** Bezeichnungen trainiert wurde, Feldnamen wie „CompanyPhoneNumber“ und „DatedAs“ bereitstellt – im Gegensatz zur Ausgabe aus dem Modell, das **ohne** Bezeichnungen trainiert wurde und die Ausgabe „field-1“, „field-2“ usw. erzeugt hat.  
-
-Während sich der Programmcode zum Trainieren eines Modells _mit_ Bezeichnungen vom Code für das Training _ohne_ Bezeichnungen möglicherweise nicht stark unterscheidet, _ändert_ die Auswahl eines Modells im Vergleich zum anderen die Projektplanungsanforderungen. Zum Trainieren mit Bezeichnungen müssen Sie [die bezeichneten Dateien erstellen](https://docs.microsoft.com/azure/applied-ai-services/form-recognizer/quickstarts/try-sample-label-tool). Die Auswahl des Trainingsprozesses kann auch unterschiedliche Modelle erzeugen, die sich wiederum auf Downstreamprozesse auswirken können – je nachdem, welche Felder das Modell zurückgibt und wie Sie den zurückgegebenen Werten vertrauen. 
+7. Zeigen Sie die Ausgabe an, und beobachten Sie, wie die Ausgabe für das Modell Feldnamen wie „CompanyPhoneNumber“ und „DatedAs“ bereitstellt.   
 
 ## <a name="more-information"></a>Weitere Informationen
 
