@@ -2,12 +2,12 @@
 lab:
   title: Extrahieren von Daten aus Formularen
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 3439c9d2d53fd0461b2fe35b095ea86d5ed3abaa
-ms.sourcegitcommit: da2617566698e889ff53426e6ddb58f42ccf9504
+ms.openlocfilehash: 540fdc49b9efcf335d43cdd7a6db405c255cd058
+ms.sourcegitcommit: de1f38bbe53ec209b42cd89516813773e2f3479b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/05/2022
-ms.locfileid: "144776169"
+ms.lasthandoff: 05/17/2022
+ms.locfileid: "145040701"
 ---
 # <a name="extract-data-from-forms"></a>Extrahieren von Daten aus Formularen 
 
@@ -196,18 +196,32 @@ pip install azure-ai-formrecognizer==3.0.0
 
 *Dies ist nicht unbedingt erforderlich, wenn Sie das Paket vorher mithilfe von pip in der Python-Umgebung installiert haben, schadet aber auch nicht, um sicherzustellen, dass es tatsächlich installiert wird.*
 
-4. Bearbeiten Sie im Ordner **test-model** die Konfigurationsdatei (**appsettings.json** oder **.env**, je nach Ihrer Spracheinstellung), und aktualisieren Sie sie, um die folgenden Werte hinzuzufügen:
+4. Installieren Sie im gleichen Terminal für den **Testmodellordner** die Tabulate-Bibliothek. Dadurch wird Ihre Ausgabe in einer Tabelle bereitgestellt:
+
+**C#**
+
+```
+Install-Package Tabulate.NET -Version 1.0.5
+```
+
+**Python**
+
+```
+pip install tabulate
+```
+
+5. Bearbeiten Sie im Ordner **test-model** die Konfigurationsdatei (**appsettings.json** oder **.env**, je nach Ihrer Spracheinstellung), und aktualisieren Sie sie, um die folgenden Werte hinzuzufügen:
     - Ihren Endpunkt für Formularerkennung.
     - Ihren Schlüssel für Formularerkennung.
     - Die Modell-ID, die beim Trainieren des Modells generiert wurde (Sie finden die ID, indem Sie im Terminal zurück zur Konsole **cmd** für den Ordner **train-model** wechseln). **Speichern** Sie die Änderungen.
 
-5. Öffnen Sie im Ordner **test-model** die Codedatei für Ihre Clientanwendung (*Program.cs* für C#, *test-model.py* für Python), und überprüfen Sie den darin enthaltenen Code, wobei Sie sich die folgenden Details notieren:
+6. Öffnen Sie im Ordner **test-model** die Codedatei für Ihre Clientanwendung (*Program.cs* für C#, *test-model.py* für Python), und überprüfen Sie den darin enthaltenen Code, wobei Sie sich die folgenden Details notieren:
     - Namespaces aus dem von Ihnen installierten Paket werden importiert.
     - Die Funktion **Main** ruft die Konfigurationseinstellungen ab und verwendet den Schlüssel und Endpunkt zum Erstellen eines authentifizierten **Clients**.
     - Anschließend werden mithilfe des Clients Formularfelder und -werte aus dem Bild **test1.jpg** extrahiert.
     
 
-6. Geben Sie das integrierte Terminal für den Ordner **test-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
+7. Geben Sie das integrierte Terminal für den Ordner **test-model** zurück und dann den folgenden Befehl zur Ausführung des Programms ein:
 
 **C#**
 
@@ -221,7 +235,7 @@ dotnet run
 python test-model.py
 ```
     
-7. Zeigen Sie die Ausgabe an, und beobachten Sie, wie die Ausgabe für das Modell Feldnamen wie „CompanyPhoneNumber“ und „DatedAs“ bereitstellt.   
+8. Zeigen Sie die Ausgabe an, und beobachten Sie, wie die Ausgabe für das Modell Feldnamen wie „CompanyPhoneNumber“ und „DatedAs“ bereitstellt.   
 
 ## <a name="more-information"></a>Weitere Informationen
 
