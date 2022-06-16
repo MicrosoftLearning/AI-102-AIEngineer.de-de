@@ -2,12 +2,12 @@
 lab:
   title: Erste Schritte mit Cognitive Services
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: 4baba38b03c6d7bb5fe04fa5e73bb606e970550b
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: a05256a78dee051041320aa3556a43add5596ce9
+ms.sourcegitcommit: 5ffc20f6a590fe643c2b695b8dc04589411be36e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801355"
+ms.lasthandoff: 05/31/2022
+ms.locfileid: "145951189"
 ---
 # <a name="get-started-with-cognitive-services"></a>Erste Schritte mit Cognitive Services
 
@@ -31,7 +31,7 @@ Azure Cognitive Services sind cloudbasierte Dienste, die KI-Funktionen kapseln, 
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: Standard S0
@@ -54,7 +54,7 @@ Die Cognitive Services-APIs sind REST-basiert, d. h. Sie können sie nutzen, in
     - **Python**: .env
 
     Öffnen Sie die Konfigurationsdatei, und aktualisieren Sie die darin enthaltenen Konfigurationswerte so, dass sie dem **Endpunkt** und einem Authentifizierungs **schlüssel** für Ihre Cognitive Services-Ressource entsprechen. Speichern Sie die Änderungen.
-4. Beachten Sie, dass der Ordner **rest-client** eine Codedatei für die Clientanwendung enthält:
+3. Beachten Sie, dass der Ordner **rest-client** eine Codedatei für die Clientanwendung enthält:
 
     - **C#** : Program.cs
     - **Python**: rest-client.py
@@ -66,7 +66,7 @@ Die Cognitive Services-APIs sind REST-basiert, d. h. Sie können sie nutzen, in
     - Die an die API gesendete Anforderung besteht aus einem JSON-Objekt, das die Eingabedaten enthält. In diesem Fall eine Sammlung von **document**-Objekten, von denen jedes eine **ID** und **Text** aufweist.
     - Der Schlüssel für Ihren Dienst ist im Anforderungsheader enthalten, um Ihre Clientanwendung zu authentifizieren.
     - Die Antwort des Diensts ist ein JSON-Objekt, das die Clientanwendung analysieren kann.
-5. Klicken Sie mit der rechten Maustaste auf den Ordner **rest-client**, und öffnen Sie ein integriertes Terminal. Geben Sie dann den folgenden sprachspezifischen Befehl ein, um das Programm auszuführen:
+4. Klicken Sie mit der rechten Maustaste auf den Ordner **rest-client**, und öffnen Sie ein integriertes Terminal. Geben Sie dann den folgenden sprachspezifischen Befehl ein, um das Programm auszuführen:
 
     **C#**
 
@@ -80,8 +80,8 @@ Die Cognitive Services-APIs sind REST-basiert, d. h. Sie können sie nutzen, in
     python rest-client.py
     ```
 
-6. Wenn Sie dazu aufgefordert werden, geben Sie etwas Text ein und überprüfen Sie die Sprache, die der Dienst erkennt und die in der JSON-Antwort zurückgegeben wird. Geben Sie beispielsweise „Hello“, „Bonjour“ und „Hola“ ein.
-7. Wenn Sie mit dem Testen der Anwendung fertig sind, geben Sie „quit“ ein, um das Programm zu beenden.
+5. Wenn Sie dazu aufgefordert werden, geben Sie etwas Text ein und überprüfen Sie die Sprache, die der Dienst erkennt und die in der JSON-Antwort zurückgegeben wird. Geben Sie beispielsweise „Hello“, „Bonjour“ und „Gracias“ ein.
+6. Wenn Sie mit dem Testen der Anwendung fertig sind, geben Sie „quit“ ein, um das Programm zu beenden.
 
 ## <a name="use-an-sdk"></a>Verwenden eines SDK
 

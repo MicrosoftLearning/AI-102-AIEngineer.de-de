@@ -2,12 +2,12 @@
 lab:
   title: Verwalten der Sicherheit von Cognitive Services
   module: Module 2 - Developing AI Apps with Cognitive Services
-ms.openlocfilehash: dcab47cf20f54d6bcbed9a3e40081b703fc2d5ba
-ms.sourcegitcommit: acbffd6019fe2f1a6ea70870cf7411025c156ef8
+ms.openlocfilehash: 9c8de44265ffa0846b6860fd7d416bb3be547ed9
+ms.sourcegitcommit: 5ffc20f6a590fe643c2b695b8dc04589411be36e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/12/2022
-ms.locfileid: "135801334"
+ms.lasthandoff: 05/31/2022
+ms.locfileid: "145951181"
 ---
 # <a name="manage-cognitive-services-security"></a>Verwalten der Sicherheit von Cognitive Services
 
@@ -33,7 +33,7 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine Ressourcengruppe (wenn Sie eine gehostete Lab-Umgebung verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen, verwenden Sie dann die bereitgestellte Ressourcengruppe).*
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
     - **Tarif**: Standard S0
@@ -228,7 +228,7 @@ Jetzt können Sie die Identität des Dienstprinzipals in einer Anwendung verwend
     python keyvault-client.py
     ```
 
-6. Wenn Sie dazu aufgefordert werden, geben Sie einen Text ein und überprüfen Sie die Sprache, die vom Dienst erkannt wird. Geben Sie beispielsweise „Hello“, „Bonjour“ und „Hola“ ein.
+6. Wenn Sie dazu aufgefordert werden, geben Sie einen Text ein und überprüfen Sie die Sprache, die vom Dienst erkannt wird. Geben Sie beispielsweise „Hello“, „Bonjour“ und „Gracias“ ein.
 7. Wenn Sie mit dem Testen der Anwendung fertig sind, geben Sie „quit“ ein, um das Programm zu beenden.
 
 ## <a name="more-information"></a>Weitere Informationen

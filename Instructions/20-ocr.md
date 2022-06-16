@@ -2,12 +2,12 @@
 lab:
   title: Lesen von Text in Bildern
   module: Module 11 - Reading Text in Images and Documents
-ms.openlocfilehash: 0dc45d60e307769ebfde165201b97c4a3ff49675
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 1199e4e4f44a98fc5f900fa1ad021384b56f0c2b
+ms.sourcegitcommit: e242452e8125a2622093980048f1e2cacb8b893d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625773"
+ms.lasthandoff: 05/25/2022
+ms.locfileid: "145757489"
 ---
 # <a name="read-text-in-images"></a>Lesen von Text in Bildern
 
@@ -31,10 +31,10 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Tarif**: Standard S0.
+    - **Tarif**: Standard S0
 3. Aktivieren Sie die erforderlichen Kontrollkästchen, und erstellen Sie die Ressource.
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 5. Wenn die Ressource bereitgestellt wurde, wechseln Sie zu ihr, und zeigen Sie ihre Seite **Schlüssel und Endpunkt** an. Sie benötigen den Endpunkt und einen der Schlüssel von dieser Seite im nächsten Verfahren.
@@ -213,7 +213,7 @@ python read-text.py
 
 ## <a name="use-the-read-api"></a>Verwenden der Lese-API
 
-Die **Lese**-API verwendet ein neueres Texterkennungsmodell als die OCR-API und erzielt bessere Ergebnisse bei größeren Bildern, die viel Text enthalten. Sie unterstützt auch die Textextraktion aus *PDF*-Dateien und kann sowohl gedruckten Text (in mehreren Sprachen) als auch handschriftlichen Text (in Englisch) erkennen.
+Die **Lese**-API verwendet ein neueres Texterkennungsmodell als die OCR-API und erzielt bessere Ergebnisse bei größeren Bildern, die viel Text enthalten. Sie unterstützt auch die Textextraktion aus *PDF*-Dateien und kann sowohl gedruckten Text als auch handschriftlichen Text in mehreren Sprachen erkennen.
 
 Die **Lese-API** verwendet ein asynchrones Betriebsmodell, bei dem eine Anforderung zum Starten der Texterkennung übermittelt wird. Die von der Anforderung zurückgegebene Vorgangs-ID kann anschließend verwendet werden, um den Fortschritt zu überprüfen und Ergebnisse abzurufen.
 

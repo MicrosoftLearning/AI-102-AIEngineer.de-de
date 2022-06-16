@@ -196,7 +196,7 @@ pip install azure-ai-formrecognizer==3.0.0
 
 *Dies ist nicht unbedingt erforderlich, wenn Sie das Paket vorher mithilfe von pip in der Python-Umgebung installiert haben, schadet aber auch nicht, um sicherzustellen, dass es tatsächlich installiert wird.*
 
-4. Installieren Sie im gleichen Terminal für den **Testmodellordner** die Tabulate-Bibliothek. Dadurch wird Ihre Ausgabe in einer Tabelle bereitgestellt:
+4. Installieren Sie im gleichen Terminal für den Ordner **test-model** die Tabulate-Bibliothek. Dadurch wird Ihre Ausgabe in einer Tabelle bereitgestellt:
 
 **C#**
 
