@@ -2,12 +2,12 @@
 lab:
   title: Erstellen einer „Fragen und Antworten“-Lösung
   module: Module 6 - Building a QnA Solution
-ms.openlocfilehash: 3fa849480f4b6f94aea758159de126aeb8bfb513
-ms.sourcegitcommit: 47e8de0c2ea379aac8bec96b7c599ffb74d1eee9
+ms.openlocfilehash: 0a71dc2c0185c51d8ccf390afd780dd914366be0
+ms.sourcegitcommit: 45e075a4b45a914d378900b4c00451a530d813de
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/22/2022
-ms.locfileid: "139132295"
+ms.lasthandoff: 05/26/2022
+ms.locfileid: "145892511"
 ---
 # <a name="create-a-question-answering-solution"></a>Erstellen einer „Fragen und Antworten“-Lösung
 
@@ -89,7 +89,7 @@ Ihre Wissensdatenbank wurde mit Frage-Antwort-Paaren aus den häufig gestellten 
 2. Klicken Sie in der Wissensdatenbank auf **&#65291; Add question pair** (Frage-Antwort-Paar hinzufügen).
 3. Geben Sie im Feld **Frage** `What is Microsoft certification?` ein, und drücken Sie die **EINGABETASTE****.
 4. Klicken Sie auf **&#65291; Alternative Formulierung hinzufügen**, geben Sie `How can I demonstrate my Microsoft technology skills?` ein, und drücken Sie die **EINGABETASTE**.
-5. Geben Sie im Feld **Antwort** `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.` ein, drücken Sie die **EINGABETASTE**, und klicken Sie auf **Übermitteln**, um die Frage (einschließlich der alternativen Formulierung) und die Antwort zur Wissensdatenbank hinzuzufügen.
+5. Geben Sie im Feld **Antwort** `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.` ein, und wählen Sie **Übermitteln** aus, um die Frage (einschließlich der alternativen Formulierung) und die Antwort der Wissensdatenbank hinzuzufügen.
 
     In einigen Fällen ist es sinnvoll, Benutzer*innen eine Nachverfolgung der Antwort zu ermöglichen, um eine *mehrteilige* Unterhaltung zu erstellen. Mit deren Hilfe können Benutzer*innen die Frage iterativ verfeinern, um die benötigte Antwort zu erhalten.
 
