@@ -2,16 +2,18 @@
 lab:
   title: Erkennen, Analysieren und Identifizieren von Gesichtern
   module: Module 10 - Detecting, Analyzing, and Recognizing Faces
-ms.openlocfilehash: b9565f41eb67b916278508c729860a3471a9e0bd
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: 29b0544e4f31f6e85eeba5cd8fb42951ca1334a9
+ms.sourcegitcommit: 7191e53bc33cda92e710d957dde4478ee2496660
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625792"
+ms.lasthandoff: 07/09/2022
+ms.locfileid: "147041656"
 ---
 # <a name="detect-analyze-and-recognize-faces"></a>Erkennen, Analysieren und Identifizieren von Gesichtern
 
 Die Fähigkeit, menschliche Gesichter zu erkennen, zu analysieren und zu identifizieren, ist eine zentrale KI-Funktion. In dieser Übung untersuchen Sie zwei Azure Cognitive Services, die Sie zum Arbeiten mit Gesichtern in Bildern verwenden können: den Dienst für **maschinelles Sehen** und den Dienst für die **Gesichtserkennung**.
+
+> **Hinweis:** Ab dem 21. Juni 2022 sind die Funktionen kognitiver Dienste, die personenbezogene Informationen zurückgeben, auf Kunden beschränkt, die [eingeschränkten Zugriff](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access) gewährt haben. Darüber hinaus sind Funktionen, die Rückschlüsse auf den emotionalen Zustand zulassen, nicht mehr verfügbar. Diese Einschränkungen können sich auf dieses Lab auswirken. Wir arbeiten daran, dies zu beheben, aber in der Zwischenzeit treten möglicherweise einige Fehler auf, wenn Sie die folgenden Schritte ausführen; dafür möchten wir uns entschuldigen. Weitere Informationen zu den von Microsoft vorgenommenen Änderungen und den Gründen hierfür finden Sie unter [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/) (Verantwortungsvolle KI-Investitionen und Vorsichtsmaßnahmen für die Gesichtserkennung).
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
@@ -31,10 +33,10 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Tarif**: Standard S0.
+    - **Tarif**: Standard S0
 3. Aktivieren Sie die erforderlichen Kontrollkästchen, und erstellen Sie die Ressource.
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 5. Wenn die Ressource bereitgestellt wurde, wechseln Sie zu ihr, und zeigen Sie ihre Seite **Schlüssel und Endpunkt** an. Sie benötigen den Endpunkt und einen der Schlüssel von dieser Seite im nächsten Verfahren.
@@ -171,7 +173,7 @@ using (var imageData = File.OpenRead(imageFile))
             var r = face.FaceRectangle;
             Rectangle rect = new Rectangle(r.Left, r.Top, r.Width, r.Height);
             graphics.DrawRectangle(pen, rect);
-            string annotation = $"Person aged approximately {face.Age}";
+            string annotation = $"Person at approximately {face.Left}, {face.Top}";
             graphics.DrawString(annotation,font,brush,r.Left, r.Top);
         }
 
@@ -207,7 +209,7 @@ with open(image_file, mode="rb") as image_data:
             bounding_box = ((r.left, r.top), (r.left + r.width, r.top + r.height))
             draw = ImageDraw.Draw(image)
             draw.rectangle(bounding_box, outline=color, width=5)
-            annotation = 'Person aged approximately {}'.format(face.age)
+            annotation = 'Person at approximately {}, {}'.format(r.left, r.top)
             plt.annotate(annotation,(r.left, r.top), backgroundcolor=color)
 
         # Save annotated image
@@ -233,7 +235,7 @@ with open(image_file, mode="rb") as image_data:
     ```
 
 6. Beobachten Sie die Ausgabe, die die Anzahl der erkannten Gesichter anzeigen sollte.
-7. Zeigen Sie die Datei **detected_faces.jpg** an, die im selben Ordner wie Ihre Codedatei generiert wird, um die kommentierten Gesichter zu sehen. In diesem Fall hat Ihr Code die Attribute des Gesichts verwendet, um das Alter jeder Person auf dem Bild zu schätzen, und die Koordinaten des Begrenzungsrahmens, um ein Rechteck um jedes Gesicht zu zeichnen.
+7. Zeigen Sie die Datei **detected_faces.jpg** an, die im selben Ordner wie Ihre Codedatei generiert wird, um die kommentierten Gesichter zu sehen. In diesem Fall hat Ihr Code die Attribute des Gesichts verwendet, um die Position der linken oberen Ecke des Rahmens zu kennzeichnen, und die Koordinaten des Begrenzungsrahmens, um ein Rechteck um jedes Gesicht zu zeichnen.
 
 ## <a name="prepare-to-use-the-face-sdk"></a>Vorbereiten der Verwendung des SDK für die Gesichtserkennung
 
@@ -309,7 +311,7 @@ Während der Dienst für **maschinelles Sehen** eine grundlegende Gesichtserkenn
 
 ## <a name="detect-and-analyze-faces"></a>Erkennen und Analysieren von Gesichtern
 
-Eine der grundlegendsten Fähigkeiten des Gesichtsdiensts ist die Erkennung von Gesichtern in einem Bild und die Bestimmung ihrer Attribute, wie Alter, emotionaler Ausdruck, Haarfarbe, das Vorhandensein einer Brille usw.
+Eine der grundlegendsten Fähigkeiten des Gesichtsdiensts ist die Erkennung von Gesichtern in einem Bild und die Bestimmung ihrer Attribute, wie Kopfhaltung, Verschwommenheitsgrad, Vorhandensein einer Brille usw.
 
 1. Untersuchen Sie in der Codedatei Ihrer Anwendung in der Funktion **Main** den Code, der ausgeführt wird, wenn der Benutzer die Menüoption **1** auswählt. Dieser Code ruft die Funktion **DetectFaces** auf und übergibt den Pfad zu einer Bilddatei.
 2. Suchen Sie die Funktion **DetectFaces** in der Codedatei, und fügen Sie unter dem Kommentar **Specify facial features to be retrieved** (Abzurufende Gesichtsmerkmale angeben) den folgenden Code ein:
@@ -320,8 +322,8 @@ Eine der grundlegendsten Fähigkeiten des Gesichtsdiensts ist die Erkennung von 
     // Specify facial features to be retrieved
     List<FaceAttributeType?> features = new List<FaceAttributeType?>
     {
-        FaceAttributeType.Age,
-        FaceAttributeType.Emotion,
+        FaceAttributeType.Occlusion,
+        FaceAttributeType.Blur,
         FaceAttributeType.Glasses
     };
     ```
@@ -330,8 +332,8 @@ Eine der grundlegendsten Fähigkeiten des Gesichtsdiensts ist die Erkennung von 
 
     ```Python
     # Specify facial features to be retrieved
-    features = [FaceAttributeType.age,
-                FaceAttributeType.emotion,
+    features = [FaceAttributeType.occlusion,
+                FaceAttributeType.blur,
                 FaceAttributeType.glasses]
     ```
 
@@ -361,15 +363,11 @@ using (var imageData = File.OpenRead(imageFile))
         {
             // Get face properties
             Console.WriteLine($"\nFace ID: {face.FaceId}");
-            Console.WriteLine($" - Age: {face.FaceAttributes.Age}");
-            Console.WriteLine($" - Emotions:");
-            foreach (var emotion in face.FaceAttributes.Emotion.ToRankedList())
-            {
-                Console.WriteLine($"   - {emotion}");
-            }
-
+            Console.WriteLine($" - Mouth Occluded: {face.FaceAttributes.Occlusion.MouthOccluded}");
+            Console.WriteLine($" - Eye Occluded: {face.FaceAttributes.Occlusion.EyeOccluded}");
+            Console.WriteLine($" - Blur: {face.FaceAttributes.Blur.BlurLevel}");
             Console.WriteLine($" - Glasses: {face.FaceAttributes.Glasses}");
-
+            
             // Draw and annotate face
             var r = face.FaceRectangle;
             Rectangle rect = new Rectangle(r.Left, r.Top, r.Width, r.Height);
@@ -410,14 +408,16 @@ with open(image_file, mode="rb") as image_data:
             # Get face properties
             print('\nFace ID: {}'.format(face.face_id))
             detected_attributes = face.face_attributes.as_dict()
-            age = 'age unknown' if 'age' not in detected_attributes.keys() else int(detected_attributes['age'])
-            print(' - Age: {}'.format(age))
+            if 'blur' in detected_attributes:
+                print(' - Blur:')
+                for blur_name in detected_attributes['blur']:
+                    print('   - {}: {}'.format(blur_name, detected_attributes['blur'][blur_name]))
+                    
+            if 'occlusion' in detected_attributes:
+                print(' - Occlusion:')
+                for occlusion_name in detected_attributes['occlusion']:
+                    print('   - {}: {}'.format(occlusion_name, detected_attributes['occlusion'][occlusion_name]))
 
-            if 'emotion' in detected_attributes:
-                print(' - Emotions:')
-                for emotion_name in detected_attributes['emotion']:
-                    print('   - {}: {}'.format(emotion_name, detected_attributes['emotion'][emotion_name]))
-            
             if 'glasses' in detected_attributes:
                 print(' - Glasses:{}'.format(detected_attributes['glasses']))
 
