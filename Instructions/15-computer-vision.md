@@ -2,12 +2,12 @@
 lab:
   title: Analysieren von Bildern mit dem Dienst für maschinelles Sehen
   module: Module 8 - Getting Started with Computer Vision
-ms.openlocfilehash: 5b7f15550844e4bc5efbdb3b8ee00d71760f18c9
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: f2ee18ff682d53e9fd554749ed2b9cbaa9b03611
+ms.sourcegitcommit: 7191e53bc33cda92e710d957dde4478ee2496660
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625752"
+ms.lasthandoff: 07/09/2022
+ms.locfileid: "147041665"
 ---
 # <a name="analyze-images-with-computer-vision"></a>Analysieren von Bildern mit dem Dienst für maschinelles Sehen
 
@@ -31,10 +31,10 @@ Wenn Sie noch keine in Ihrem Abonnement haben, müssen Sie eine **Cognitive Serv
 1. Öffnen Sie das Azure-Portal unter `https://portal.azure.com`, und melden Sie sich mit dem Microsoft-Konto an, das Ihrem Azure-Abonnement zugeordnet ist.
 2. Wählen Sie die Schaltfläche **&#65291;Ressource erstellen**, suchen Sie nach *Cognitive Services*, und erstellen Sie eine **Cognitive Services**-Ressource mit den folgenden Einstellungen:
     - **Abonnement:** *Geben Sie Ihr Azure-Abonnement an.*
-    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (Wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)* .
+    - **Ressourcengruppe**: *Wählen Sie eine Ressourcengruppe aus, oder erstellen Sie eine (wenn Sie ein eingeschränktes Abonnement verwenden, sind Sie möglicherweise nicht berechtigt, eine neue Ressourcengruppe zu erstellen. Verwenden Sie dann die bereitgestellte Gruppe.)*
     - **Region**: *Wählen Sie eine beliebige verfügbare Region aus*.
     - **Name**: *Geben Sie einen eindeutigen Namen ein.*
-    - **Tarif**: Standard S0.
+    - **Tarif**: Standard S0
 3. Aktivieren Sie die erforderlichen Kontrollkästchen, und erstellen Sie die Ressource.
 4. Warten Sie, bis die Bereitstellung abgeschlossen ist, und zeigen Sie dann die Bereitstellungsdetails an.
 5. Wenn die Ressource bereitgestellt wurde, wechseln Sie zu ihr, und zeigen Sie ihre Seite **Schlüssel und Endpunkt** an. Sie benötigen den Endpunkt und einen der Schlüssel von dieser Seite im nächsten Verfahren.
@@ -265,16 +265,15 @@ if (len(analysis.tags) > 0):
 
 ## <a name="get-image-categories"></a>Abrufen von Bildkategorien
 
-Der Dienst für maschinelles Sehen kann *Kategorien* für Bilder vorschlagen, und innerhalb jeder Kategorie kann er bekannte Wahrzeichen oder Prominente identifizieren.
+Der Dienst für maschinelles Sehen kann *Kategorien* für Bilder vorschlagen, und innerhalb jeder Kategorie kann er bekannte Wahrzeichen identifizieren.
 
-1. Fügen Sie in der Funktion **AnalyzeImage** unter dem Kommentar **Get image categories (including celebrities and landmarks)** (Bildkategorien abrufen (einschließlich Prominenter und Wahrzeichen)) den folgenden Code ein:
+1. Fügen Sie in der Funktion **AnalyzeImage** unter dem Kommentar **Get image categories** (Bildkategorien abrufen) den folgenden Code hinzu:
 
 **C#**
 
 ```C
-// Get image categories (including celebrities and landmarks)
+// Get image categories
 List<LandmarksModel> landmarks = new List<LandmarksModel> {};
-List<CelebritiesModel> celebrities = new List<CelebritiesModel> {};
 Console.WriteLine("Categories:");
 foreach (var category in analysis.Categories)
 {
@@ -292,18 +291,6 @@ foreach (var category in analysis.Categories)
             }
         }
     }
-
-    // Get celebrities in this category
-    if (category.Detail?.Celebrities != null)
-    {
-        foreach (CelebritiesModel celebrity in category.Detail.Celebrities)
-        {
-            if (!celebrities.Any(item => item.Name == celebrity.Name))
-            {
-                celebrities.Add(celebrity);
-            }
-        }
-    }
 }
 
 // If there were landmarks, list them
@@ -316,25 +303,15 @@ if (landmarks.Count > 0)
     }
 }
 
-// If there were celebrities, list them
-if (celebrities.Count > 0)
-{
-    Console.WriteLine("Celebrities:");
-    foreach(CelebritiesModel celebrity in celebrities)
-    {
-        Console.WriteLine($" -{celebrity.Name} (confidence: {celebrity.Confidence.ToString("P")})");
-    }
-}
 ```
 
 **Python**
 
 ```Python
-# Get image categories (including celebrities and landmarks)
+# Get image categories
 if (len(analysis.categories) > 0):
     print("Categories:")
     landmarks = []
-    celebrities = []
     for category in analysis.categories:
         # Print the category
         print(" -'{}' (confidence: {:.2f}%)".format(category.name, category.score * 100))
@@ -345,27 +322,15 @@ if (len(analysis.categories) > 0):
                     if landmark not in landmarks:
                         landmarks.append(landmark)
 
-            # Get celebrities in this category
-            if category.detail.celebrities:
-                for celebrity in category.detail.celebrities:
-                    if celebrity not in celebrities:
-                        celebrities.append(celebrity)
-
     # If there were landmarks, list them
     if len(landmarks) > 0:
         print("Landmarks:")
         for landmark in landmarks:
             print(" -'{}' (confidence: {:.2f}%)".format(landmark.name, landmark.confidence * 100))
 
-    # If there were celebrities, list them
-    if len(celebrities) > 0:
-        print("Celebrities:")
-        for celebrity in celebrities:
-            print(" -'{}' (confidence: {:.2f}%)".format(celebrity.name, celebrity.confidence * 100))
-
 ```
     
-2. Speichern Sie Ihre Änderungen, und führen Sie das Programm einmal für jede der Bilddateien im Ordner **images** aus. Achten Sie darauf, dass neben der Bildbeschriftung und den Tags auch eine Liste der vorgeschlagenen Kategorien sowie erkannte Wahrzeichen oder Prominente angezeigt werden (insbesondere bei den Bildern **building.jpg** und **person.jpg**).
+2. Speichern Sie Ihre Änderungen, und führen Sie das Programm einmal für jede der Bilddateien im Ordner **images** aus. Achten Sie darauf, dass neben der Bildbeschriftung und den Tags auch eine Liste der vorgeschlagenen Kategorien sowie erkannte Wahrzeichen angezeigt werden (insbesondere beim Bild **building.jpg**).
 
 ## <a name="get-brands-in-an-image"></a>Abrufen von Marken in einem Image
 

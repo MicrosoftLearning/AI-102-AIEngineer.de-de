@@ -2,16 +2,18 @@
 lab:
   title: Analysieren von Videos mit Video Analyzer
   module: Module 8 - Getting Started with Computer Vision
-ms.openlocfilehash: cd67c472b5ee15efce232483afc8aeeac552b50c
-ms.sourcegitcommit: d6da3bcb25d1cff0edacd759e75b7608a4694f03
+ms.openlocfilehash: ec23e53f363ed7c7df8fd598cfd1fc8807712f05
+ms.sourcegitcommit: 7191e53bc33cda92e710d957dde4478ee2496660
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/16/2021
-ms.locfileid: "132625801"
+ms.lasthandoff: 07/09/2022
+ms.locfileid: "147041674"
 ---
 # <a name="analyze-video-with-video-analyzer"></a>Analysieren von Videos mit Video Analyzer
 
 Ein großer Teil der heute erstellten und verbrauchten Daten liegt im Videoformat vor. **Video Analyzer for Media** ist ein KI-gestützter Dienst, mit dem Sie Videos indizieren und daraus Erkenntnisse gewinnen können.
+
+> **Hinweis:** Ab dem 21. Juni 2022 sind die Funktionen kognitiver Dienste, die personenbezogene Informationen zurückgeben, auf Kunden beschränkt, die [eingeschränkten Zugriff](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access) gewährt haben. Darüber hinaus sind Funktionen, die Rückschlüsse auf den emotionalen Zustand zulassen, nicht mehr verfügbar. Diese Einschränkungen können sich auf dieses Lab auswirken. Wir arbeiten daran, dies zu beheben, aber in der Zwischenzeit treten möglicherweise einige Fehler auf, wenn Sie die folgenden Schritte ausführen; dafür möchten wir uns entschuldigen. Weitere Informationen zu den von Microsoft vorgenommenen Änderungen und den Gründen hierfür finden Sie unter [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/) (Verantwortungsvolle KI-Investitionen und Vorsichtsmaßnahmen für die Gesichtserkennung).
 
 ## <a name="clone-the-repository-for-this-course"></a>Klonen des Repositorys für diesen Kurs
 
